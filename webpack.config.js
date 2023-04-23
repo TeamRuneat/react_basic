@@ -7,7 +7,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, '/dist'),
     filename: 'bundle.js',
@@ -16,16 +16,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
           },
         ],
-        exclude: '/node_modules/',
       },
       {
-        test: /\.jfif$/,
+        test: /\.(png|jpe?g|gif)$/i,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
@@ -34,11 +34,10 @@ module.exports = {
     ],
   },
   devServer: {
-    static: path.join(__dirname, 'build'),
     port: 8088,
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: './public/index.html' }),
+    new HtmlWebpackPlugin({ template: './public/index.html', favicon: './public/favicon.ico'}),
   ],
 };
