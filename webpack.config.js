@@ -34,6 +34,11 @@ module.exports = {
           name: "[name].[ext]",
         },
       },
+      {
+        test: /.css$/,
+        exclude: [],
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
     ],
   },
   devServer: {
