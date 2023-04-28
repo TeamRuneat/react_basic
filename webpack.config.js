@@ -32,7 +32,7 @@ module.exports = {
         },
       },
       {
-        test: /.css?$/,
+        test: /.css$/,
         exclude: [],
         use: ["style-loader", "css-loader", "postcss-loader"],
       },
