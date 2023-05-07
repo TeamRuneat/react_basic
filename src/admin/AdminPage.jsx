@@ -1,4 +1,5 @@
 import React, {useCallback, useRef, useEffect, useState} from 'react';
+import { getDomains, updateDomains } from './api/domains';
 
 export default function AdminPage() {
   const domainRef = useRef(null);
@@ -6,13 +7,7 @@ export default function AdminPage() {
   const [domainList, setDomainList] = useState([]);
 
   const refreshDomains = useCallback(() => {
-    fetch('/admin/domains').then((response) => {
-      if (response.ok) {
-        response.json().then(setDomainList);
-      } else {
-        response.text().then(alert);
-      }
-    });
+    getDomains().then(setDomainList).catch(alert);
   }, []);
 
   const addDomain = () => {
@@ -20,10 +15,7 @@ export default function AdminPage() {
     const companyName = companyNameRef.current?.value;
 
     if (domain && companyName) {
-      fetch('/admin/domains', {
-        method: 'POST',
-        body: JSON.stringify({domain, companyName})
-      }).then(refreshDomains);
+      updateDomains(domain, companyName).then(refreshDomains).catch(alert);
     }
   };
   
