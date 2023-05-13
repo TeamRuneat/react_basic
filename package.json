@@ -30,6 +30,8 @@
     "eslint": "^8.39.0",
     "eslint-plugin-react": "latest",
     "html-webpack-plugin": "^5.5.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "msw": "^1.2.1",
     "postcss": "^8.4.23",
     "style-loader": "^3.3.2",
@@ -40,5 +42,8 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": ["eslint --ext .js,jsx src/ --fix"]
   }
 }
