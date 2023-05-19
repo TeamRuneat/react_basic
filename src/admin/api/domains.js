@@ -1,4 +1,4 @@
-import customAxios from "./apiConfig";
+import customAxios from './apiConfig';
 
 export async function getDomains(){
   const axios = customAxios();
@@ -12,12 +12,12 @@ export async function getDomains(){
 export async function updateDomains(domain, companyName){
   const axios = customAxios();
   const { data } = (await axios({
-      url: '/domains',
-      method: 'POST',
-      data: {
-        domain,
-        companyName
-      },
+    url: '/domains',
+    method: 'POST',
+    data: {
+      domain,
+      companyName
+    },
   }));
   return data;
 }
