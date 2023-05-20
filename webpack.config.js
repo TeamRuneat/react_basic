@@ -1,6 +1,7 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: 'development',
@@ -42,6 +43,7 @@ module.exports = {
   },
   devServer: {
     port: 8088,
+    historyApiFallback: true,
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -56,6 +58,9 @@ module.exports = {
       favicon: './public/favicon.ico',
       filename: 'admin.html',
       chunks: ['admin'],
-    })
+    }),
+    new Dotenv({
+      path: './.env',
+    }),
   ],
 };
