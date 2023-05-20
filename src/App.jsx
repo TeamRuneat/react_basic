@@ -1,16 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 const App = () => {
-  useEffect(() => {
-    fetch('/hello').then((response) => {
-      if (response.ok) {
-        response.json().then(console.log).catch(console.error);
-      } else {
-        alert('msw not ok');
-      }
-    });
-  }, []);
-  return <div>Hello World!</div>;
+  return(
+    <div>
+      <Outlet />
+    </div>
+  )
 };
 
 export default App;
