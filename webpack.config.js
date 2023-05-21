@@ -59,8 +59,5 @@ module.exports = {
       filename: 'admin.html',
       chunks: ['admin'],
     }),
-    new Dotenv({
-      path: './.env',
-    }),
   ],
 };
