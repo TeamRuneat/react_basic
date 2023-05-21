@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import KakaoLogin from './KakoLogin';
+import KakaoLogin from './KakaoLogin';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { addUser, getUser } from '../api/login';
