@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8088';
-
 export async function getUser(){
   const { data } = (await axios({
-    url: `${baseURL}/users`,
+    url: '/users',
     withCredentials: true,
   }));
   return data;
@@ -13,7 +11,7 @@ export async function getUser(){
 export async function addUser(user){
   const { data } = (await axios({
       method: 'POST',
-      url: `${baseURL}/users`,
+      url: '/users',
       withCredentials: true,
       data: {
         id: user.id,
