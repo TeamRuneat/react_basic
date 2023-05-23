@@ -1,23 +1,22 @@
-import customAxios from './apiConfig';
+import axios from 'axios';
 
 export async function getDomains(){
-  const axios = customAxios();
   const { data } = (await axios({
-    url: '/domains',
+    url: '/admin/domains',
+    withCredentials: true,
   }));
   return data;
 }
 
-
 export async function updateDomains(domain, companyName){
-  const axios = customAxios();
   const { data } = (await axios({
-    url: '/domains',
-    method: 'POST',
-    data: {
-      domain,
-      companyName
-    },
+      method: 'POST',
+      url: '/admin/domains',
+      withCredentials: true,
+      data: {
+        domain,
+        companyName
+      },
   }));
   return data;
 }
