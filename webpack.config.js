@@ -1,4 +1,4 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
-    publicPath: '/',
+    clean: true,
   },
   module: {
     rules: [
@@ -47,15 +47,17 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new CopyPlugin({
+      patterns: ['public']
+    }),
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: './index.html',
       favicon: './public/favicon.ico',
       filename: 'index.html',
       chunks: ['main'],
     }),
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: './admin.html',
       favicon: './public/favicon.ico',
       filename: 'admin.html',
       chunks: ['admin'],
