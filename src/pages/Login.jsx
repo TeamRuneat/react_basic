@@ -3,6 +3,7 @@ import KakaoLogin from './KakaoLogin';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { addUser, getUser } from '../api/login';
+import runeat from '../../public/images/run_eat01.png';
 
 export default function Login(){
   const [userList, setUserList] = useState([]);
@@ -51,8 +52,9 @@ export default function Login(){
   }
 
   return (
-    <section className='mx-5'>
+    <section className='mx-auto max-w-[400px]'>
       <h1 className='my-12 font-semibold text-lg text-center'>로그인</h1>
+      <img src={runeat} alt='runeat' className='mx-auto mb-5' />
       <form className='mb-3' onSubmit={onSubmitHandler}>
         <div><input type='text' name='email' placeholder='아이디(이메일)' value={email} onChange={onChangeHandler}/></div>
         <div><input type='password' name='password' placeholder='비밀번호' value={password} onChange={onChangeHandler} /></div>

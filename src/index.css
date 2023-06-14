@@ -24,3 +24,7 @@ code {
 input {
   @apply p-4 w-full h-12 outline-none border border-gray-300 mb-3;
 }
+
+input[type='checkbox'] {
+  @apply hidden;
+}
