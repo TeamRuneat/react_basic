@@ -4,6 +4,7 @@ import ShopList from './ShopList';
 import Button from '../components/Button';
 import Searchbox from '../components/Searchbox';
 
+const serverUrl = 'https://43.200.176.108.nip.io'; // TODO 임시
 const shopOptions = ['음식', '가격', '태그'];
 const sortOptions = ['거리순', '별점순', '최신순'];
 
@@ -17,12 +18,12 @@ export default function RestaurantList(){
   useEffect(() => {
     const getLists = async () => {
       try{
-        const res = await axios.get('http://ec2-43-200-176-108.ap-northeast-2.compute.amazonaws.com/shop-list')
+        const res = await axios.get(`${serverUrl}/shop-list`);
         setLists(res.data);
       } catch(error) {
-        console.log(error)
+        console.log(error);
       }
-    }
+    };
     getLists();
   }, []);
 
@@ -61,5 +62,5 @@ export default function RestaurantList(){
         {lists?.map((item) => <ShopList key={item.id} item={item} />)}
       </ul>
     </div>
-  )
+  );
 }

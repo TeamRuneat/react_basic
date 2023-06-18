@@ -4,7 +4,7 @@ import Button from './Button';
 import logo from '../../public/images/logo.png';
 
 export default function Navbar(){
-  const {user, setUser} = useState();
+  const {user} = useState();
   const location = useLocation();
 
   if(location.pathname === '/login'){
@@ -13,7 +13,7 @@ export default function Navbar(){
 
   return(
     <header className='relative'>
-       <h1 className='px-10 py-7 text-2xl'>
+      <h1 className='px-10 py-7 text-2xl'>
         <Link to='/'>
           <img src={logo} alt='logo' className='w-[80px] h-[30]' />
         </Link>
@@ -23,5 +23,5 @@ export default function Navbar(){
         {user && <Button text={'로그아웃'}/>}
       </nav>
     </header>
-  )
+  );
 }

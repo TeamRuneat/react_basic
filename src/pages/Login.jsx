@@ -6,7 +6,7 @@ import { addUser, getUser } from '../api/login';
 import runeat from '../../public/images/run_eat01.png';
 
 export default function Login(){
-  const [userList, setUserList] = useState([]);
+  const [, setUserList] = useState([]);
   const [user, setUser] = useState({
     id: '',
     email: '',
@@ -23,7 +23,7 @@ export default function Login(){
       id: uuidv4(),
       [name] : value
     });
-  }
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -49,7 +49,7 @@ export default function Login(){
     catch(error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <section className='mx-auto max-w-[400px]'>
@@ -62,5 +62,5 @@ export default function Login(){
       </form>
       <KakaoLogin />
     </section>
-  )
+  );
 }
