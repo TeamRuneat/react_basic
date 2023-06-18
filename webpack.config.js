@@ -1,11 +1,12 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const Dotenv = require('dotenv-webpack');
-const classNames = require('classnames');
+
+const AVAILABLE_PHASES = ['development', 'production'];
+const mode = AVAILABLE_PHASES.includes(process.env.NODE_ENV) ? process.env.NODE_ENV : 'development';
 
 module.exports = {
-  mode: 'development',
+  mode,
   resolve: {
     extensions: ['.js', '.jsx'],
   },
