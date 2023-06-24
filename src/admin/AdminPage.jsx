@@ -1,5 +1,5 @@
 import React, {useCallback, useRef, useEffect, useState} from 'react';
-import { getDomains, updateDomains } from './api/domains';
+import { getDomains, updateDomains } from '../apis/admin/domains';
 
 export default function AdminPage() {
   const domainRef = useRef(null);
@@ -18,7 +18,7 @@ export default function AdminPage() {
       updateDomains(domain, companyName).then(refreshDomains).catch(alert);
     }
   };
-  
+
   useEffect(() => {
     refreshDomains();
   }, []);
