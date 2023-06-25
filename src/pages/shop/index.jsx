@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Shop from './Shop';
+import ShopListItem from '../../components/shop/ShopListItem';
 import Button from '../../components/common/Button';
 import Searchbox from '../../components/common/Searchbox';
 
@@ -8,7 +8,7 @@ const serverUrl = 'https://43.200.176.108.nip.io'; // TODO 임시
 const shopOptions = ['음식', '가격', '태그'];
 const sortOptions = ['거리순', '별점순', '최신순'];
 
-export default function AllShop(){
+export default function ShopList(){
   const [lists, setLists] = useState([]);
   const [foodSelected, setFoodSelected] = useState(shopOptions[0]);
   const [sortSelected, setSortSelected] = useState(sortOptions[0]);
@@ -59,7 +59,7 @@ export default function AllShop(){
         </div>
       </div>
       <ul className='grid grid-cols-1 md:grid-cols-4 lg-grid-cols-4 gap-10 p-10'>
-        {lists?.map((item) => <Shop key={item.id} item={item} />)}
+        {lists?.map((item) => <ShopListItem key={item.id} item={item} />)}
       </ul>
     </div>
   );
