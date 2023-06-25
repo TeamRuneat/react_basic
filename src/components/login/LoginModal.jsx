@@ -12,7 +12,7 @@ export default function LoginModal({onCloseModal}){
         <h2 className='mb-12 font-[BMJua] text-[90px] leading-[90px] text-[#009389]'>런잇</h2>
         <img src={runeat} alt='runeat' className='mb-7' />
         <KakaoLoginButton />
-        <Link to='/' className='mt-16 text-20 underline underline-offset-1'>회원가입 문의</Link>
+        <Link to='/' className='mt-16 text-20 underline underline-offset-2'>회원가입 문의</Link>
       </section>
     </div>
   );
