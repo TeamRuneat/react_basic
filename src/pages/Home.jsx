@@ -1,6 +1,6 @@
 import React from 'react';
-import Shop from './Shop';
+import ShopList from './shop';
 
 export default function Home(){
-  return <Shop/>;
+  return <ShopList />;
 }

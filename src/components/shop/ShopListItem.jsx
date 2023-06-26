@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
-import Checkbox from '../components/Checkbox';
-import BookmarkButton from '../components/BookmarkButton';
-import restaurant from '../../public/images/shop.jpg';
+import Checkbox from '../common/Checkbox';
+import BookmarkButton from '../common/BookmarkButton';
+import restaurant from '../../../public/images/shop.jpg';
 
-export default function Restaurant({ item }){
+export default function ShopListItem({ item }){
   const [bookmark, setBookmark] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 

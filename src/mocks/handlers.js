@@ -1,7 +1,8 @@
 import { rest } from 'msw';
 
+const serverUrl = 'https://43.200.176.108.nip.io';
 export const handlers = [
-  rest.get('http://ec2-43-200-176-108.ap-northeast-2.compute.amazonaws.com/shop-list', (_, res, ctx) => {
+  rest.get(`${serverUrl}/shop-list`, (_, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([
