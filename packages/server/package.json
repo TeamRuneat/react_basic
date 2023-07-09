@@ -1,9 +1,8 @@
 {
-  "name": "nest_basic",
+  "name": "server",
   "version": "0.0.1",
   "description": "",
   "author": "",
-  "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "start": "cross-env NODE_ENV=local nest start",
