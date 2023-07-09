@@ -1,20 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import fetch from 'node-fetch';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 const CLIENT_ID = 'e0fe8a1a2f88dba51e4c6ae55157e96c';
-const REDIRECT_URI = 'https://43.200.176.108.nip.io/api/auth/callback';
 const RESPONSE_TYPE = 'code';
-
-const urlParams = new URLSearchParams({
-  client_id: CLIENT_ID,
-  redirect_uri: REDIRECT_URI,
-  response_type: RESPONSE_TYPE,
-});
 
 @Injectable()
 export class AuthService {
+  constructor(private configService: ConfigService) {}
+
   createAuthParameters() {
-    return urlParams;
+    return new URLSearchParams({
+      client_id: CLIENT_ID,
+      redirect_uri: this.getRedirectUri(),
+      response_type: RESPONSE_TYPE,
+    });
   }
 
   async getUserToken(code: string) {
@@ -26,7 +26,7 @@ export class AuthService {
       body: new URLSearchParams({
         grant_type: 'authorization_code',
         client_id: CLIENT_ID,
-        redirect_uri: REDIRECT_URI,
+        redirect_uri: this.getRedirectUri(),
         code,
       }),
     });
@@ -42,5 +42,10 @@ export class AuthService {
       },
     });
     return response.json();
+  }
+
+  private getRedirectUri() {
+    const redirectUri = this.configService.get<string>('KAKAO_REDIRECT_URL');
+    return `${redirectUri}/api/auth/callback`;
   }
 }

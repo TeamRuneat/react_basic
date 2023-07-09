@@ -4,7 +4,6 @@ import ShopListItem from '../../components/shop/ShopListItem';
 import Button from '../../components/common/Button';
 import Searchbox from '../../components/common/Searchbox';
 
-const serverUrl = 'https://43.200.176.108.nip.io'; // TODO 임시
 const shopOptions = ['음식', '가격', '태그'];
 const sortOptions = ['거리순', '별점순', '최신순'];
 
@@ -18,7 +17,7 @@ export default function ShopList(){
   useEffect(() => {
     const getLists = async () => {
       try{
-        const res = await axios.get(`${serverUrl}/shop-list`);
+        const res = await axios.get('/api/shop-list');
         setLists(res.data);
       } catch(error) {
         console.log(error);

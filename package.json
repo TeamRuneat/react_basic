@@ -11,8 +11,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "yarn workspaces foreach -pv run dev",
-    "build": "yarn workspaces foreach -pv run build"
+    "dev": "yarn workspaces foreach -pvi run dev",
+    "build": "yarn workspaces foreach -pvit run build"
   },
   "keywords": [],
   "author": "",

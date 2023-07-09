@@ -43,10 +43,6 @@ module.exports = {
       },
     ],
   },
-  devServer: {
-    port: 8088,
-    historyApiFallback: true,
-  },
   plugins: [
     new CopyPlugin({
       patterns: ['public']

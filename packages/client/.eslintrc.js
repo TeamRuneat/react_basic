@@ -17,5 +17,6 @@ module.exports = {
     semi: ['error','always'],
     'quote-props': ['error', 'as-needed'],
     'react/prop-types': 'off'
-  }
+  },
+  ignorePatterns: ['dist'],
 };

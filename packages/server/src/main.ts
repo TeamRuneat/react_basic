@@ -12,6 +12,7 @@ async function bootstrap() {
       saveUninitialized: false,
     }),
   );
+  app.setGlobalPrefix('api');
   app.use(passport.initialize());
   app.use(passport.session());
   await app.listen(3000, '0.0.0.0');
