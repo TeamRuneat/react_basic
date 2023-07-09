@@ -10,13 +10,13 @@ export async function getDomains(){
 
 export async function updateDomains(domain, companyName){
   const { data } = (await axios({
-      method: 'POST',
-      url: '/admin/domains',
-      withCredentials: true,
-      data: {
-        domain,
-        companyName
-      },
+    method: 'POST',
+    url: '/admin/domains',
+    withCredentials: true,
+    data: {
+      domain,
+      companyName
+    },
   }));
   return data;
 }
