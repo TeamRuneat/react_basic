@@ -19,7 +19,6 @@
   "license": "UNLISENCED",
   "devDependencies": {
     "eslint": "^8.39.0",
-    "eslint-plugin-react": "latest",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2"
   },
