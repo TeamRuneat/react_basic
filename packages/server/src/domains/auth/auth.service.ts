@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import fetch from 'node-fetch';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 
 const CLIENT_ID = 'e0fe8a1a2f88dba51e4c6ae55157e96c';
 const RESPONSE_TYPE = 'code';
