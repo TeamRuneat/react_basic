@@ -1,23 +1,22 @@
 module.exports = {
-  root: true,
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-    jest: true,
-  },
+  root: false,
   extends: [
-    'eslint:recommended'
+    '../../.eslintrc.js',
+    'plugin:react/recommended'
   ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
+  plugins: [
+    'react'
+  ],
   rules: {
     indent: ['error', 2],
     quotes: ['error','single'],
     semi: ['error','always'],
     'quote-props': ['error', 'as-needed'],
     'react/prop-types': 'off'
-  }
+  },
+  ignorePatterns: ['dist'],
 };
