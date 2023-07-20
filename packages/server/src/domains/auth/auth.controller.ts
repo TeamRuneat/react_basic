@@ -6,9 +6,11 @@ import {
   Query,
   Redirect,
   Session,
+  UseGuards,
 } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -34,10 +36,8 @@ export class AuthController {
   }
 
   @Get('user')
+  @UseGuards(AuthGuard)
   async getKakaoUserInfo(@Session() session: Record<string, any>) {
-    if (!session.tokens) {
-      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
-    }
     return await this.authService.getUserInfo(session.tokens.access_token);
   }
 
