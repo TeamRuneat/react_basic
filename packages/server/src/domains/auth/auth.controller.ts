@@ -40,4 +40,9 @@ export class AuthController {
     }
     return await this.authService.getUserInfo(session.tokens.access_token);
   }
+
+  @Get('check')
+  loginCheck(@Session() session: Record<string, any>) {
+    return !!session.tokens;
+  }
 }
