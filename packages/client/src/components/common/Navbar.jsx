@@ -18,7 +18,7 @@ export default function Navbar() {
       <nav className='mx-12 flex items-center font-semibold'>
         {user ? (
           <div className='mr-3'>
-            <Link to='/mypage' state={user} className='flex items-center'>
+            <Link to='/mypage' className='flex items-center'>
               <div className='md:block mr-4'>{user?.properties?.nickname}</div>
               <div className='w-16 h-16'>
                 <img
