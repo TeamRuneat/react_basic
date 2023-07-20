@@ -5,8 +5,7 @@ import './index.css';
 import App from './App';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import KakaoAuth from './pages/auth/KakaoAuth';
-import User from './pages/User';
+import MyPage from './pages/mypage';
 
 const router = createBrowserRouter([
   {
@@ -15,8 +14,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: '/', element: <Home /> },
-      { path: '/oauth/kakao/callback', element: <KakaoAuth /> },
-      { path: '/users', element: <User /> }
+      { path: '/mypage', element: <MyPage /> }
     ],
   },
 ]);
