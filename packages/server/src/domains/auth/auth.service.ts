@@ -34,6 +34,18 @@ export class AuthService {
     return await response.json();
   }
 
+  async kakaoLogout(accessToken: any) {
+    console.log(accessToken);
+    const response = await fetch('https://kapi.kakao.com/v1/user/logout', {
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${accessToken.access_token}`,
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+      },
+    });
+    return response.json();
+  }
+
   async getUserInfo(accessToken: string) {
     const response = await fetch('https://kapi.kakao.com/v2/user/me', {
       headers: {
