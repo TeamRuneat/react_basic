@@ -6,9 +6,11 @@ import {
   Query,
   Redirect,
   Session,
+  UseGuards,
 } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -34,10 +36,27 @@ export class AuthController {
   }
 
   @Get('user')
+  @UseGuards(AuthGuard)
   async getKakaoUserInfo(@Session() session: Record<string, any>) {
-    if (!session.tokens) {
-      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+    const info = await this.authService.getUserInfo(
+      session.tokens.access_token,
+    );
+    session.info = info;
+    return info;
+  }
+
+  @Get('check')
+  loginCheck(@Session() session: Record<string, any>) {
+    return !!session.tokens;
+  }
+
+  @Get('logout')
+  async logout(@Session() session: Record<string, any>) {
+    if (session.tokens) {
+      const response = await this.authService.kakaoLogout(session.tokens);
+      delete session.tokens;
+      return 'ok';
     }
-    return await this.authService.getUserInfo(session.tokens.access_token);
+    return 'not ok'; // NOTE 200 은 맞으나 tokens 이 없어 로그아웃 동작이 수행된 적은 없다
   }
 }
