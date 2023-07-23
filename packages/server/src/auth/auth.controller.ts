@@ -6,10 +6,12 @@ import {
   Session,
   UseGuards,
 } from '@nestjs/common';
-
+import createLogger from 'debug';
 import { KakaoService } from '../providers/kakao/kakao.service';
 import { AuthGuard } from './auth.guard';
 import { SessionData } from '../../types';
+
+const logger = createLogger('app:controller:auth');
 
 @Controller('auth')
 export class AuthController {
@@ -30,6 +32,7 @@ export class AuthController {
     @Session() session: SessionData,
   ) {
     const token = await this.kakaoService.getUserAuthToken(code);
+    logger('user logged in', token);
     session.tokens = token;
   }
 

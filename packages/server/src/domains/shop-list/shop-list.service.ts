@@ -23,7 +23,6 @@ export class ShopListService {
   }
 
   findAll() {
-    console.log(this._dummy);
     return this._dummy;
   }
 
