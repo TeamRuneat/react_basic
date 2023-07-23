@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthService } from './auth.service';
+import { KakaoService } from './kakao.service';
 import { ConfigService } from '@nestjs/config';
 
 describe('AuthService', () => {
-  let service: AuthService;
+  let service: KakaoService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        AuthService,
+        KakaoService,
         {
           provide: ConfigService,
           useValue: {
@@ -21,7 +21,7 @@ describe('AuthService', () => {
       ],
     }).compile();
 
-    service = module.get<AuthService>(AuthService);
+    service = module.get<KakaoService>(KakaoService);
   });
 
   it.skip('[method] getUserToken: 카카오 로그인 토큰을 받아온다', async () => {

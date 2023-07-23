@@ -5,8 +5,10 @@ import { ConfigService } from '@nestjs/config';
 const CLIENT_ID = 'e0fe8a1a2f88dba51e4c6ae55157e96c';
 const RESPONSE_TYPE = 'code';
 
+const KAKAO_AUTH_URL = 'https://kauth.kakao.com';
+
 @Injectable()
-export class AuthService {
+export class KakaoService {
   constructor(private configService: ConfigService) {}
 
   createAuthParameters() {
@@ -18,7 +20,7 @@ export class AuthService {
   }
 
   async getUserToken(code: string) {
-    const response = await fetch('https://kauth.kakao.com/oauth/token', {
+    const response = await fetch(`${KAKAO_AUTH_URL}/oauth/token`, {
       method: 'post',
       headers: {
         'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
@@ -36,7 +38,7 @@ export class AuthService {
 
   async kakaoLogout(accessToken: any) {
     console.log(accessToken);
-    const response = await fetch('https://kapi.kakao.com/v1/user/logout', {
+    const response = await fetch(`${KAKAO_AUTH_URL}/v1/user/logout`, {
       method: 'post',
       headers: {
         Authorization: `Bearer ${accessToken.access_token}`,
@@ -47,7 +49,7 @@ export class AuthService {
   }
 
   async getUserInfo(accessToken: string) {
-    const response = await fetch('https://kapi.kakao.com/v2/user/me', {
+    const response = await fetch(`${KAKAO_AUTH_URL}/v2/user/me`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/x-www-form-urlencoded;chatset=utf-8',

@@ -7,19 +7,19 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-import { AuthService } from './auth.service';
+import { KakaoService } from './kakao.service';
 import { AuthGuard } from './auth.guard';
 import { SessionData } from '../../types';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly kakaoService: KakaoService) {}
 
   @Get()
   @Redirect()
   kakaoAuth() {
     return {
-      url: `https://kauth.kakao.com/oauth/authorize?${this.authService.createAuthParameters()}`,
+      url: `https://kauth.kakao.com/oauth/authorize?${this.kakaoService.createAuthParameters()}`,
     };
   }
 
@@ -29,14 +29,14 @@ export class AuthController {
     @Query('code') code: string,
     @Session() session: SessionData,
   ) {
-    const token = await this.authService.getUserToken(code);
+    const token = await this.kakaoService.getUserToken(code);
     session.tokens = token;
   }
 
   @Get('user')
   @UseGuards(AuthGuard)
   async getKakaoUserInfo(@Session() session: SessionData) {
-    return await this.authService.getUserInfo(session.tokens.access_token);
+    return await this.kakaoService.getUserInfo(session.tokens.access_token);
   }
 
   @Get('check')
@@ -47,7 +47,7 @@ export class AuthController {
   @Get('logout')
   async logout(@Session() session: SessionData) {
     if (session.tokens) {
-      const response = await this.authService.kakaoLogout(session.tokens);
+      const response = await this.kakaoService.kakaoLogout(session.tokens);
       delete session.tokens;
       return 'ok';
     }
