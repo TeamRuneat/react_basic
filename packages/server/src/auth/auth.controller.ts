@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-import { KakaoService } from './kakao.service';
+import { KakaoService } from '../providers/kakao/kakao.service';
 import { AuthGuard } from './auth.guard';
 import { SessionData } from '../../types';
 
@@ -19,7 +19,7 @@ export class AuthController {
   @Redirect()
   kakaoAuth() {
     return {
-      url: `https://kauth.kakao.com/oauth/authorize?${this.kakaoService.createAuthParameters()}`,
+      url: this.kakaoService.getAuthCallbackUrl(),
     };
   }
 
@@ -29,7 +29,7 @@ export class AuthController {
     @Query('code') code: string,
     @Session() session: SessionData,
   ) {
-    const token = await this.kakaoService.getUserToken(code);
+    const token = await this.kakaoService.getUserAuthToken(code);
     session.tokens = token;
   }
 
@@ -47,7 +47,7 @@ export class AuthController {
   @Get('logout')
   async logout(@Session() session: SessionData) {
     if (session.tokens) {
-      const response = await this.kakaoService.kakaoLogout(session.tokens);
+      const response = await this.kakaoService.logout(session.tokens);
       delete session.tokens;
       return 'ok';
     }
