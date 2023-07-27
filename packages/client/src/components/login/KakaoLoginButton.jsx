@@ -6,12 +6,12 @@ const KAKAO_AUTH_URL = '/api/auth';
 
 export default function KakaoLoginButton(){
   return (
-    <div className='relative w-[659px] leading-[100px] text-center bg-[#fbe44d]'>
+    <div className='relative w-[470px] leading-[80px] text-center bg-[#fbe44d]'>
       <span className='absolute left-2/4 bottom-full -translate-x-1/2 block mb-[10px]'>
-        <img src={kakaoTooltip} alt='kakao_tooltip' />
+        <img src={kakaoTooltip} alt='kakao_tooltip'/>
       </span>
-      <a className='block text-24' href={KAKAO_AUTH_URL}>
-        <img src={kakao} alt='kakao_logo' className='mr-[30px] inline-block' />
+      <a className='block text-20 font-bold' href={KAKAO_AUTH_URL}>
+        <span className='mr-[30px] inline-block align-middle'><img src={kakao} alt='kakao_logo' className='w-10 h-9'/></span>
         카카오로 시작하기
       </a>
     </div>
