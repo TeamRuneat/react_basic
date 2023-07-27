@@ -18,6 +18,10 @@ code {
     monospace;
 }
 
+img {
+  @apply block w-full
+}
+
 input {
   @apply p-4 w-full h-12 outline-none border-b border-gray-300 mb-3;
 }
