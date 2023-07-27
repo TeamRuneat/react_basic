@@ -1,17 +1,12 @@
-import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { getUser } from '../apis/authApi';
+import { getUser, loginCheck } from '../apis/authApi';
 
 const useGetUser = () => {
-  const navigate = useNavigate();
-  return useQuery(['user'], getUser, {
-    onError: (error) => {
-      const { response } = error;
-      if (response.status === 403) {
-        navigate('/');
-      }
-    },
+  const { data: isLoggedIn } = useQuery(['isLoggedIn'], loginCheck);
+  const { data } = useQuery(['user'], getUser, {
+    enabled: !!isLoggedIn,
   });
-}
+  return { data };
+};
 
 export default useGetUser;
