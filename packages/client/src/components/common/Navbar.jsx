@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../../public/images/logo.png';
-import LoginModal from '../login/LoginModal';
-import User from '../user/User';
 import Button from './Button';
-import useGetUser from '../../hooks/useGetUser';
+import LoginModal from '../login/LoginModal';
+import UserProfile from '../user/UserProfile';
+import { useUser } from '../../hooks/useUser';
+import logo from '../../../public/images/logo.png';
 
 export default function Navbar() {
   const [openModal, setOpenModal] = useState(false);
-  const { data : user } = useGetUser();
+  const { data : user } = useUser();
 
   return (
     <header className='flex justify-between'>
@@ -21,7 +21,7 @@ export default function Navbar() {
         {user ? (
           <div className='mr-3'>
             <Link to='/mypage' className='flex items-center'>
-              <User />
+              <UserProfile />
             </Link>
           </div>
         ) : (

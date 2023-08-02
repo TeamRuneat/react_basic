@@ -1,10 +1,10 @@
 import React from 'react';
 import Button from '../../components/common/Button';
-import useGetUser from '../../hooks/useGetUser';
+import { useUser } from '../../hooks/useUser';
 import useLogout from '../../hooks/useLogout';
 
 export default function MyPage() {
-  const { data : user } = useGetUser();
+  const { data : user } = useUser();
   const { mutate: logout } = useLogout();
 
   return (
