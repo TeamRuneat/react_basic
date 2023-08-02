@@ -1,18 +1,5 @@
 import React from 'react';
-import Runeat from '../../../public/images/run_eat01.png';
-
-export default function ErrorFallback({ error, resetErrorBoundary }){
-  const { status } = error.response;
-  const { title, content } = getErrorMessage(status);
-
-  return(
-    <div className='flex flex-col justify-center items-center h-screen'>
-      <div><img src={Runeat} alt='런잇' className='w-64 h-auto' /></div>
-      <p className='py-5 text-xl font-bold'>{title}</p>
-      <button onClick={() => resetErrorBoundary} className='border-gray-950 border p-3 rounded-lg font-bold'>{content}</button>
-    </div>
-  )
-}
+import runeat from '../../../public/images/run_eat01.png';
 
 const getErrorMessage = (status) => {
   switch (status) {
@@ -28,4 +15,17 @@ const getErrorMessage = (status) => {
         content: '새로고침을 하거나 잠시 후 다시 접속해 주시기 바랍니다.',
       };
   }
+};
+
+export default function ErrorFallback({ error, resetErrorBoundary }) {
+  const { status } = error.response;
+  const { title, content } = getErrorMessage(status);
+
+  return(
+    <div className='flex flex-col justify-center items-center h-screen'>
+      <div><img src={runeat} alt='런잇' className='w-64 h-auto' /></div>
+      <p className='py-5 text-xl font-bold'>{title}</p>
+      <button onClick={() => resetErrorBoundary} className='border-gray-950 border p-3 rounded-lg font-bold'>{content}</button>
+    </div>
+  );
 };
