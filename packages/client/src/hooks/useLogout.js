@@ -5,7 +5,7 @@ import { logout } from '../apis/authApi';
 const useLogout = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  return useMutation(['user'], logout, {
+  return useMutation(logout, {
     onSuccess: () => {
       queryClient.setQueryData(['user'], null);
       queryClient.setQueryData(['isLoggedIn'], false);
@@ -18,5 +18,5 @@ const useLogout = () => {
   });
 }
   
-  export default useLogout;
+export default useLogout;
   
