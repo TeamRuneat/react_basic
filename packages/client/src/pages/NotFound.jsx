@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import runeat from '../../public/icons/runeat_logo.svg';
 
-export default function NotFound(){
+export default function NotFound() {
   const navigate = useNavigate();
   return(
     <div className='flex flex-col justify-center items-center text-center h-screen'>
@@ -15,5 +15,5 @@ export default function NotFound(){
       </div>
       <button onClick={() => navigate('/')} className='border-gray-950 border p-3 rounded-lg'>홈으로 돌아가기</button>
     </div>
-  )
+  );
 }

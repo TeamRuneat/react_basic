@@ -4,7 +4,7 @@ import kakaoTooltip from '../../../public/icons/kakao_tooltip.svg';
 
 const KAKAO_AUTH_URL = '/api/auth';
 
-export default function KakaoLoginButton(){
+export default function KakaoLoginButton() {
   return (
     <div className='relative w-[470px] leading-[80px] text-center bg-[#fbe44d]'>
       <span className='absolute left-2/4 bottom-full -translate-x-1/2 block mb-[10px]'>

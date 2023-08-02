@@ -19,7 +19,7 @@ code {
 }
 
 img {
-  @apply block w-full
+  @apply block w-full;
 }
 
 input {

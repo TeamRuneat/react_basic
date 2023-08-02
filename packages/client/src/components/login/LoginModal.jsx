@@ -2,7 +2,7 @@ import React from 'react';
 import KakaoLoginButton from './KakaoLoginButton';
 import runeat from '../../../public/icons/runeat_logo.svg';
 
-export default function LoginModal({onCloseModal}){
+export default function LoginModal({onCloseModal}) {
   return (
     <div className='fixed grid place-items-center inset-0 z-20'>
       <div onClick={onCloseModal} className='absolute inset-0 bg-dim opacity-70 z-20'></div>
