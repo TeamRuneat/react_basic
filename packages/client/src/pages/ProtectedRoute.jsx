@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useGetUser from '../hooks/useGetUser';
+import { useCheckLogin } from '../hooks/useUser';
 
 export default function ProtectedRoute({ children }) {
   const navigate = useNavigate();
-  const { data : user } = useGetUser();
+  const { data : isLoggedIn } = useCheckLogin();
 
   useEffect(() => {
-    if(!user) {
-      navigate('/')
+    if(!isLoggedIn) {
+      navigate('/');
     }
-  }, [user])
-
+  }, [isLoggedIn]);
+  
   return children;
 }
