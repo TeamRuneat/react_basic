@@ -1,11 +1,5 @@
 import { FoodTypes, PriceRanges } from '../../../constants/shop';
-import {
-  IsArray,
-  IsEmail,
-  IsEnum,
-  IsNotEmpty,
-  IsOptional,
-} from 'class-validator';
+import { IsArray, IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateShopDto {
   @IsNotEmpty()

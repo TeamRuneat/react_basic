@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { UpdateShopDto } from './dto/update-shop.dto';
-import { ShopList } from './entities/shop-list.entity';
-import { validate, validateOrReject } from 'class-validator';
+import { ShopList } from './entities/shop.entity';
+import { validateOrReject } from 'class-validator';
 
 const createDummy = (id: number): ShopList => ({
   id,
@@ -25,16 +25,29 @@ export class ShopListService {
     return 'shop created';
   }
 
+  async update(id: number, updateShopListDto: UpdateShopDto) {
+    await validateOrReject(updateShopListDto);
+
+    const targetEntity = this.findOne(id);
+    if (targetEntity) {
+      const nextEntity: ShopList = Object.assign(
+        {},
+        targetEntity,
+        updateShopListDto,
+      );
+      console.log(`${id} shopList updated to`, nextEntity);
+      return `This action updates a #${id} shopList`;
+    } else {
+      throw new NotFoundException();
+    }
+  }
+
   findAll() {
     return this._dummy;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} shopList`;
-  }
-
-  update(id: number, updateShopListDto: UpdateShopDto) {
-    return `This action updates a #${id} shopList`;
+    return this._dummy.find((shop) => shop.id === id);
   }
 
   remove(id: number) {
