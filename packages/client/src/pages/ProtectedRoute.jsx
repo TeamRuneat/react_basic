@@ -7,10 +7,10 @@ export default function ProtectedRoute({ children }) {
   const { data : isLoggedIn } = useCheckLogin();
 
   useEffect(() => {
-    if(!isLoggedIn) {
-      navigate('/');
+    if (!isLoggedIn) {
+      navigate('/', { state: { redirect : true } });
     }
   }, [isLoggedIn]);
-  
+
   return children;
 }
