@@ -1,12 +1,14 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ShopListService } from './shop-list.service';
 import { CreateShopDto } from './dto/create-shop.dto';
+import { AuthGuard } from '../../auth/auth.guard';
 
 @Controller('shop-list')
 export class ShopListController {
   constructor(private readonly shopListService: ShopListService) {}
 
   @Post()
+  @UseGuards(AuthGuard)
   create(@Body() createShopListDto: CreateShopDto) {
     return this.shopListService.create(createShopListDto);
   }
