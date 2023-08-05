@@ -6,6 +6,7 @@ import App from './App';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import MyPage from './pages/mypage';
+import ProtectedRoute from './pages/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,11 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: '/', element: <Home /> },
-      { path: '/mypage', element: <MyPage /> }
+      { path: '/mypage', element: (
+        <ProtectedRoute>
+          <MyPage />
+        </ProtectedRoute>
+      ) }
     ],
   },
 ]);
