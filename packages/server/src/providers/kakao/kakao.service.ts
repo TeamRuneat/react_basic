@@ -35,7 +35,7 @@ export class KakaoService {
 
   async logout(accessToken: any) {
     console.log(accessToken);
-    const response = await fetch(`${KAKAO_AUTH_URL}/v1/user/logout`, {
+    const response = await fetch(`${KAKAO_API_URL}/v1/user/logout`, {
       method: 'post',
       headers: this.createAuthHeader(accessToken.access_token),
     });
