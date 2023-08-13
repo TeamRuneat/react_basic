@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { ShopListModule } from './modules/shop-list/shop-list.module';
+import { ShopListModule } from './modules/shop/shop-list.module';
 import { AuthModule } from './auth/auth.module';
 import { HeartbeatController } from './heartbeat.controller';
 import * as path from 'path';
