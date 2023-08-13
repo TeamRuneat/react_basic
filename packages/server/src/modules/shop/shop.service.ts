@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { CreateShopListDto } from './dto/create-shop-list.dto';
-import { UpdateShopListDto } from './dto/update-shop-list.dto';
-import { ShopList } from './entities/shop-list.entity';
+import { CreateShopDto } from './dto/create-shop.dto';
+import { UpdateShopDto } from './dto/update-shop.dto';
+import { Shop } from './entities/shop.entity';
 
-const createDummy = (id: number): ShopList => ({
+const createDummy = (id: number): Shop => ({
   id,
   title: '어쭈구리밥상',
   type: ['한식', '백반'],
@@ -13,12 +13,12 @@ const createDummy = (id: number): ShopList => ({
   averagePrice: 10000,
 });
 @Injectable()
-export class ShopListService {
-  private _dummy: ShopList[] = Array.from({ length: 10 }).map((_, index) =>
+export class ShopService {
+  private _dummy: Shop[] = Array.from({ length: 10 }).map((_, index) =>
     createDummy(index),
   );
 
-  create(createShopListDto: CreateShopListDto) {
+  create(createShopListDto: CreateShopDto) {
     return 'This action adds a new shopList';
   }
 
@@ -30,7 +30,7 @@ export class ShopListService {
     return `This action returns a #${id} shopList`;
   }
 
-  update(id: number, updateShopListDto: UpdateShopListDto) {
+  update(id: number, updateShopListDto: UpdateShopDto) {
     return `This action updates a #${id} shopList`;
   }
 

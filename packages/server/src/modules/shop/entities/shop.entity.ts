@@ -1,4 +1,4 @@
-export class ShopList {
+export class Shop {
   id: number;
   title: string;
   type: string[];

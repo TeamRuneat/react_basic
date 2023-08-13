@@ -1,12 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-import { ShopListService } from './shop-list.service';
+import { ShopService } from './shop.service';
 
 @Controller('shop-list')
-export class ShopListController {
-  constructor(private readonly shopListService: ShopListService) {}
+export class ShopController {
+  constructor(private readonly shopListService: ShopService) {}
 
   // @Post()
-  // create(@Body() createShopListDto: CreateShopListDto) {
+  // create(@Body() createShopListDto: CreateShopDto) {
   //   return this.shopListService.create(createShopListDto);
   // }
 
@@ -23,7 +23,7 @@ export class ShopListController {
   // @Patch(':id')
   // update(
   //   @Param('id') id: string,
-  //   @Body() updateShopListDto: UpdateShopListDto,
+  //   @Body() updateShopListDto: UpdateShopDto,
   // ) {
   //   return this.shopListService.update(+id, updateShopListDto);
   // }
