@@ -13,7 +13,7 @@ const useLogout = () => {
       console.log(response);
     },
   });
-}
+};
   
 export default useLogout;
   
