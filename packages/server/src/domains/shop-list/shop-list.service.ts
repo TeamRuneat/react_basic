@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { CreateShopListDto } from './dto/create-shop-list.dto';
-import { UpdateShopListDto } from './dto/update-shop-list.dto';
-import { ShopList } from './entities/shop-list.entity';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateShopDto } from './dto/create-shop.dto';
+import { UpdateShopDto } from './dto/update-shop.dto';
+import { ShopList } from './entities/shop.entity';
+import { validateOrReject } from 'class-validator';
 
 const createDummy = (id: number): ShopList => ({
   id,
@@ -12,14 +13,33 @@ const createDummy = (id: number): ShopList => ({
   tags: ['순한맛', '집밥'],
   averagePrice: 10000,
 });
+
 @Injectable()
 export class ShopListService {
   private _dummy: ShopList[] = Array.from({ length: 10 }).map((_, index) =>
     createDummy(index),
   );
 
-  create(createShopListDto: CreateShopListDto) {
-    return 'This action adds a new shopList';
+  async create(createShopListDto: CreateShopDto) {
+    await validateOrReject(createShopListDto);
+    return 'shop created';
+  }
+
+  async update(id: number, updateShopListDto: UpdateShopDto) {
+    await validateOrReject(updateShopListDto);
+
+    const targetEntity = this.findOne(id);
+    if (targetEntity) {
+      const nextEntity: ShopList = Object.assign(
+        {},
+        targetEntity,
+        updateShopListDto,
+      );
+      console.log(`${id} shopList updated to`, nextEntity);
+      return `This action updates a #${id} shopList`;
+    } else {
+      throw new NotFoundException();
+    }
   }
 
   findAll() {
@@ -27,11 +47,7 @@ export class ShopListService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} shopList`;
-  }
-
-  update(id: number, updateShopListDto: UpdateShopListDto) {
-    return `This action updates a #${id} shopList`;
+    return this._dummy.find((shop) => shop.id === id);
   }
 
   remove(id: number) {

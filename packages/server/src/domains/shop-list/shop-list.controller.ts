@@ -1,14 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ShopListService } from './shop-list.service';
+import { CreateShopDto } from './dto/create-shop.dto';
+import { AuthGuard } from '../../auth/auth.guard';
 
 @Controller('shop-list')
 export class ShopListController {
   constructor(private readonly shopListService: ShopListService) {}
 
-  // @Post()
-  // create(@Body() createShopListDto: CreateShopListDto) {
-  //   return this.shopListService.create(createShopListDto);
-  // }
+  @Post()
+  @UseGuards(AuthGuard)
+  create(@Body() createShopListDto: CreateShopDto) {
+    return this.shopListService.create(createShopListDto);
+  }
 
   @Get()
   findAll() {
@@ -23,7 +26,7 @@ export class ShopListController {
   // @Patch(':id')
   // update(
   //   @Param('id') id: string,
-  //   @Body() updateShopListDto: UpdateShopListDto,
+  //   @Body() updateShopListDto: UpdateShopDto,
   // ) {
   //   return this.shopListService.update(+id, updateShopListDto);
   // }
