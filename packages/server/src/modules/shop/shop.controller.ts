@@ -1,23 +1,26 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ShopService } from './shop.service';
+import { CreateShopDto } from './dto/create-shop.dto';
+import { AuthGuard } from '../../auth/auth.guard';
 
 @Controller('shop-list')
 export class ShopController {
-  constructor(private readonly shopListService: ShopService) {}
+  constructor(private readonly shopService: ShopService) {}
 
-  // @Post()
-  // create(@Body() createShopListDto: CreateShopDto) {
-  //   return this.shopListService.create(createShopListDto);
-  // }
+  @Post()
+  @UseGuards(AuthGuard)
+  create(@Body() createShopListDto: CreateShopDto) {
+    return this.shopService.create(createShopListDto);
+  }
 
   @Get()
   findAll() {
-    return this.shopListService.findAll();
+    return this.shopService.findAll();
   }
 
   // @Get(':id')
   // findOne(@Param('id') id: string) {
-  //   return this.shopListService.findOne(+id);
+  //   return this.shopService.findOne(+id);
   // }
 
   // @Patch(':id')
@@ -25,11 +28,11 @@ export class ShopController {
   //   @Param('id') id: string,
   //   @Body() updateShopListDto: UpdateShopDto,
   // ) {
-  //   return this.shopListService.update(+id, updateShopListDto);
+  //   return this.shopService.update(+id, updateShopListDto);
   // }
 
   // @Delete(':id')
   // remove(@Param('id') id: string) {
-  //   return this.shopListService.remove(+id);
+  //   return this.shopService.remove(+id);
   // }
 }
