@@ -7,14 +7,14 @@ export default function Home() {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { redirect, logout } = location.state || {};
+  const { redirect } = location.state || {};
 
   useEffect(() => {
-    if (redirect && !logout) {
-      setOpenModal(!openModal);
-      navigate('/', { replace: true }); 
-    } 
-  }, [redirect, logout]);
+    if (redirect) {
+      setOpenModal(true);
+      navigate('/', { replace: true });
+    }
+  }, []);
 
   return (
     <>
