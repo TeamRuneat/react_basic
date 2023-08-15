@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from './Button';
 import LoginModal from '../login/LoginModal';
 import UserProfile from '../user/UserProfile';
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '../../hooks/auth/useUser';
 import logo from '../../../public/images/logo.png';
 
 export default function Navbar() {
@@ -25,7 +25,11 @@ export default function Navbar() {
             </Link>
           </div>
         ) : (
-          <Button text={'로그인'} onClick={() => setOpenModal(true)} className='p-5' />
+          <Button 
+            text={'로그인'} 
+            onClick={() => setOpenModal(true)} 
+            className='p-5' 
+          />
         )}
         {openModal && <LoginModal onCloseModal={() => setOpenModal(false)} />}
       </nav>
