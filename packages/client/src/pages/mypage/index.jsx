@@ -1,18 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
-import { useUser } from '../../hooks/useUser';
-import useLogout from '../../hooks/useLogout';
+import { useUser } from '../../hooks/auth/useUser';
+import useLogout from '../../hooks/auth/useLogout'
 
 export default function MyPage() {
-  const navigate = useNavigate();
   const { data : user } = useUser();
   const { mutate: logout } = useLogout();
-
-  const logoutHandler = () => {
-    logout();
-    navigate('/', { state: { logout : true } });
-  };
 
   return (
     <div className='mx-60'>
@@ -52,7 +45,7 @@ export default function MyPage() {
           </div>
         </li>
       </ul>
-      <Button text={'로그아웃'} onClick={logoutHandler} />
+      <Button text={'로그아웃'} onClick={logout} />
     </div>
   );
 }
