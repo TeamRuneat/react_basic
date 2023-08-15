@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../components/common/Button';
-import { useUser } from '../../hooks/useUser';
-import useLogout from '../../hooks/useLogout';
+import { useUser } from '../../hooks/auth/useUser';
+import useLogout from '../../hooks/auth/useLogout'
 
 export default function MyPage() {
   const { data : user } = useUser();
