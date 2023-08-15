@@ -12,11 +12,11 @@ export class ShopService {
 
   async create(createShopDto: CreateShopDto) {
     await validateOrReject(createShopDto);
-    const createdCat = new this.shopModel(createShopDto);
-    return createdCat.save();
+    const createdModel = new this.shopModel(createShopDto);
+    return createdModel.save();
   }
 
-  async update(id: number, updateShopDto: UpdateShopDto) {
+  async update(id: string, updateShopDto: UpdateShopDto) {
     await validateOrReject(updateShopDto);
     await this.shopModel.findByIdAndUpdate(id, updateShopDto);
   }
@@ -25,8 +25,8 @@ export class ShopService {
     return this.shopModel.find().exec();
   }
 
-  findOne(id: number) {
-    return this.shopModel.find((shop) => shop.id === id);
+  findOne(id: string) {
+    return this.shopModel.findById(id);
   }
 
   remove(id: number) {

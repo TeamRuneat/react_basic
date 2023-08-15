@@ -5,11 +5,18 @@ import { FoodTypes, PriceRanges } from '../../../constants/shop';
 
 export type ShopDocument = HydratedDocument<Shop>;
 
-@Schema({ collection: 'shop' })
-export class Shop {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: '_id' })
-  id: number;
-
+@Schema({
+  autoIndex: true,
+  collection: 'shop',
+  toJSON: {
+    virtuals: true,
+    versionKey: false,
+    transform: function (_, ret) {
+      delete ret._id;
+    },
+  },
+})
+export class Shop extends mongoose.Document {
   @Prop({ required: true })
   title: string;
 
@@ -28,3 +35,11 @@ export class Shop {
 }
 
 export const ShopSchema = SchemaFactory.createForClass(Shop);
+
+ShopSchema.virtual('id')
+  .set(function (v) {
+    this.set({ _id: v });
+  })
+  .get(function (this: Shop) {
+    return this._id;
+  });

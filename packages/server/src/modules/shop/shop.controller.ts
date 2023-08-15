@@ -1,7 +1,16 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { ShopService } from './shop.service';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { AuthGuard } from '../../auth/auth.guard';
+import { UpdateShopDto } from './dto/update-shop.dto';
 
 @Controller('shop-list')
 export class ShopController {
@@ -18,18 +27,16 @@ export class ShopController {
     return this.shopService.findAll();
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.shopService.findOne(+id);
-  // }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.shopService.findOne(id);
+  }
 
-  // @Patch(':id')
-  // update(
-  //   @Param('id') id: string,
-  //   @Body() updateShopListDto: UpdateShopDto,
-  // ) {
-  //   return this.shopService.update(+id, updateShopListDto);
-  // }
+  @Patch(':id')
+  @UseGuards(AuthGuard)
+  update(@Param('id') id: string, @Body() updateShopListDto: UpdateShopDto) {
+    return this.shopService.update(id, updateShopListDto);
+  }
 
   // @Delete(':id')
   // remove(@Param('id') id: string) {
