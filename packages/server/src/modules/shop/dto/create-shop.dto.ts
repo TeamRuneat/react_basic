@@ -7,7 +7,7 @@ export class CreateShopDto {
   // location: string;
   @IsEnum(FoodTypes)
   @IsNotEmpty()
-  category: keyof typeof FoodTypes;
+  type: keyof typeof FoodTypes;
 
   @IsEnum(PriceRanges)
   @IsNotEmpty()
