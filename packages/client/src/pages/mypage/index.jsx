@@ -1,9 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
-import useGetUser from '../../hooks/useGetUser';
+import { useUser } from '../../hooks/useUser';
+import useLogout from '../../hooks/useLogout';
 
 export default function MyPage() {
-  const { data : user } = useGetUser();
+  const navigate = useNavigate();
+  const { data : user } = useUser();
+  const { mutate: logout } = useLogout();
+
+  const logoutHandler = () => {
+    logout();
+    navigate('/', { state: { logout : true } });
+  };
 
   return (
     <div className='mx-60'>
@@ -43,6 +52,7 @@ export default function MyPage() {
           </div>
         </li>
       </ul>
+      <Button text={'로그아웃'} onClick={logoutHandler} />
     </div>
   );
 }
