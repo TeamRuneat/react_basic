@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '../../hooks/auth/useUser';
 
 export default function UserProfile() {
   const { data : user } = useUser(); 
