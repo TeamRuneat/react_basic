@@ -30,12 +30,12 @@ module.exports = {
       },
       keyframes: {
         bounce: {
-          '0%, 20%': { trasnsform: 'translate(0,0)' },
+          '0%, 20%': { trasnsform: `translate(0,0)` },
           '50%': {
             transform: 'translateY(-150%)',
           },
           '85%, 100%': {
-            trasnsform: 'translate(0,0)',
+            trasnsform: `translate(0,0)`,
           },
         },
         slider: {
