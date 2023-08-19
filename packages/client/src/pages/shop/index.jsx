@@ -1,31 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import ShopListItem from '../../components/shop/ShopListItem';
 import Button from '../../components/common/Button';
 import Searchbox from '../../components/common/Searchbox';
+import { useShops } from '../../hooks/shop/useShops';
 
 const shopOptions = ['음식', '가격', '태그'];
 const sortOptions = ['거리순', '별점순', '최신순'];
 
-export default function ShopList(){
-  const [lists, setLists] = useState([]);
+export default function ShopList() {
   const [foodSelected, setFoodSelected] = useState(shopOptions[0]);
   const [sortSelected, setSortSelected] = useState(sortOptions[0]);
-
-  const SELECT_CLASS = 'py-1 pl-2 pr-6 cursor-pointer utline-none';
-
-  useEffect(() => {
-    const getLists = async () => {
-      try{
-        const res = await axios.get('/api/shop-list');
-        setLists(res.data);
-      } catch(error) {
-        console.log(error);
-      }
-    };
-    getLists();
-  }, []);
-
+  const { data: shops } = useShops();
+  
   return (
     <div>
       <Searchbox />
@@ -33,7 +19,7 @@ export default function ShopList(){
         <div className='ml-8'>
           <select
             id='shopSelect'
-            className={SELECT_CLASS}
+            className='py-1 pl-2 pr-6 cursor-pointer utline-none'
             value={foodSelected}
             onChange={(e) => setFoodSelected(e.target.value)}
           >
@@ -43,12 +29,12 @@ export default function ShopList(){
           </select>
           <select
             id='sortSelect'
-            className={SELECT_CLASS}
+            className='py-1 pl-2 pr-6 cursor-pointer utline-none'
             value={sortSelected}
             onChange={(e) => setSortSelected(e.target.value)}
           >
             {sortOptions.map((option, index) => (
-              <option key={index} >{option}</option>
+              <option key={index}>{option}</option>
             ))}
           </select>
         </div>
@@ -58,7 +44,9 @@ export default function ShopList(){
         </div>
       </div>
       <ul className='grid grid-cols-1 md:grid-cols-4 lg-grid-cols-4 gap-10 p-10'>
-        {lists?.map((item) => <ShopListItem key={item.id} item={item} />)}
+        {shops?.map((item) => (
+          <ShopListItem key={item.id} item={item} />
+        ))}
       </ul>
     </div>
   );
