@@ -13,19 +13,37 @@
   font-weight: 400;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button, select {
+  text-transform: none;
+  -webkit-appearance: none;
 }
+
+a, button, input, label, select {
+  background-color: transparent;
+}
+
 
 img {
   @apply block w-full;
 }
 
+span {
+  @apply inline-block;
+}
+
 input {
-  @apply p-4 w-full h-12 outline-none border-b border-gray-300 mb-3;
+  @apply p-4 w-full h-12 outline-none border border-gray-300;
+}
+
+input:read-only {
+  @apply bg-[#fafafb];
+}  
+
+input[type='file'] {
+  @apply absolute inset-0 w-full h-full opacity-0 cursor-pointer;
 }
 
 input[type='checkbox'] {
   @apply hidden;
 }
+
