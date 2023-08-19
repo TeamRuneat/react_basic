@@ -4033,8 +4033,10 @@ __metadata:
     postcss: ^8.4.25
     postcss-loader: ^7.2.4
     react: ^18.2.0
+    react-daumpost-hook: ^1.1.8
     react-dom: ^18.2.0
     react-error-boundary: ^4.0.10
+    react-hook-form: ^7.45.4
     react-icons: ^4.9.0
     react-router-dom: ^6.11.2
     style-loader: ^3.3.2
@@ -6534,6 +6536,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"isa-util@npm:^1.0.7":
+  version: 1.0.9
+  resolution: "isa-util@npm:1.0.9"
+  checksum: a8587ff88a32c90087318cc3bf32250804a339a6c906b1af17906646b6e062a286bae4253910f193f44075ee4867bdc12c77effb279d8bfc4f3603b64be38012
+  languageName: node
+  linkType: hard
+
 "isarray@npm:~1.0.0":
   version: 1.0.0
   resolution: "isarray@npm:1.0.0"
@@ -8879,6 +8888,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-daumpost-hook@npm:^1.1.8":
+  version: 1.1.8
+  resolution: "react-daumpost-hook@npm:1.1.8"
+  dependencies:
+    isa-util: ^1.0.7
+  checksum: fc8f308e753ed232478d9e2f4524231bb3c6ecf95807d484b2331df5595828887637ca289cb1cad8494180cfae981eadd4147f4baa8b283a9a345107e5b33073
+  languageName: node
+  linkType: hard
+
 "react-dom@npm:^18.2.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
@@ -8899,6 +8917,15 @@ __metadata:
   peerDependencies:
     react: ">=16.13.1"
   checksum: 4ad4864d2a5fc2264a24d03e83176e6a70d7adbe3c1edbdc5b0bd452a695104bc59456e23b5aea1b9729220672fe46614221daa8b3bd59327968d4aa7eb8bc71
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.45.4":
+  version: 7.45.4
+  resolution: "react-hook-form@npm:7.45.4"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: 1d84c78dadf561bc9e360272c5c856c724426162e13a74929c0517c3eb8004a7f057561fff3bfd4c1121b36d6cf1437399df1dbfd01d0817b9f922503f407d8f
   languageName: node
   linkType: hard
 
@@ -10459,11 +10486,11 @@ __metadata:
 
 "typescript@patch:typescript@4.9.5#~builtin<compat/typescript>":
   version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=289587"
+  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 1f8f3b6aaea19f0f67cba79057674ba580438a7db55057eb89cc06950483c5d632115c14077f6663ea76fd09fce3c190e6414bb98582ec80aa5a4eaf345d5b68
+  checksum: ab417a2f398380c90a6cf5a5f74badd17866adf57f1165617d6a551f059c3ba0a3e4da0d147b3ac5681db9ac76a303c5876394b13b3de75fdd5b1eaa06181c9d
   languageName: node
   linkType: hard
 
