@@ -1,5 +1,12 @@
 import { FoodTypes, PriceRanges } from '../../../constants/shop';
-import { IsArray, IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
+import {
+  IsArray,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class CreateShopDto {
   @IsNotEmpty()
@@ -13,7 +20,8 @@ export class CreateShopDto {
   @IsNotEmpty()
   priceRange: keyof typeof PriceRanges;
 
-  @IsArray()
+  @IsString({ each: true })
+  @Transform(({ obj, key }) => obj[key].filter((val) => val))
   tags: string[];
 
   @IsArray()
