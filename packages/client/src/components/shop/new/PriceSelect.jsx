@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { PRICE_RANGE } from '../../../constants/priceRange';
 
-const PRICE_RANGE = [
-  { label: '1만원 이하', value: 'UNDER_ONE_THOUSANDS' },
-  { label: '1만원대', value: 'ONE_THOUSANDS' },
-  { label: '2만원대', value: 'TWO_THOUSANDS' },
-  { label: '3만원대', value: 'THREE_THOUSANDS' },
-  { label: '3만원 이상', value: 'OVER_THREE_THOUSANDS' },
-];
-
-export default function PriceSelect({ name, setValue }) {
+export default function PriceSelect({ name, setValue: updatePriceRange }) {
   const [selected, setSelected] = useState(PRICE_RANGE[0]);
 
   useEffect(() => {
-    setValue(name, selected.value);
-  }, [selected, setValue]);
+    updatePriceRange(name, selected.value);
+  }, [selected, updatePriceRange]);
 
   return (
     <div className='relative inline-block w-full rounded-lg border border-neutral-300'>
@@ -25,7 +18,7 @@ export default function PriceSelect({ name, setValue }) {
         }
         className='w-full h-10 pl-3 pr-7'
       >
-        {PRICE_RANGE?.map((option, index) => (
+        {PRICE_RANGE.map((option, index) => (
           <option key={index} value={option.label}>
             {option.label}
           </option>
