@@ -7,5 +7,10 @@ export function getShops() {
 }
 
 export function addNewShop(data) {
-  return axios.post('/api/shop-list', data).then((response) => response.data);
+  return axios.post('/api/shop-list', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  }).then((response) => response.data);
 }
+

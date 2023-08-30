@@ -6,7 +6,7 @@ export default function ShopFileUpload({ control, name }) {
   const [fileList, setFileList] = useState([]);
 
   const handleChange = async (e) => {
-    const newFile = URL.createObjectURL(e.target.files[0]);
+    const newFile = e.target.files[0];
     const newFileList = [...fileList, newFile];
     field.onChange(newFileList);
     setFileList(newFileList);
@@ -28,7 +28,7 @@ export default function ShopFileUpload({ control, name }) {
             >
               <img
                 className='absolute inset-0 h-full'
-                src={file}
+                src={URL.createObjectURL(file)}
                 alt='thumbnail'
               />
               <button

@@ -68,7 +68,7 @@ export default function ShopCreateForm() {
       </List>
       <List title={'식당 사진'}>
         <ShopFileUpload 
-          name='imageUrls' 
+          name='image' 
           control={control} 
         />
       </List>
