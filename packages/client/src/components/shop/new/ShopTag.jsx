@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useController } from 'react-hook-form';
 
 const tags = [
-  { label: '#가성비', value: '가성비' },
-  { label: '#점심회식', value: '점심회식' },
-  { label: '#저녁회식', value: '저녁회식' },
-  { label: '#혼밥', value: '혼밥' },
-  { label: '#단체', value: '단체' },
+  { value: '가성비' },
+  { value: '점심회식' },
+  { value: '저녁회식' },
+  { value: '혼밥' },
+  { value: '단체' },
 ];
 
 export default function ShopTag({ control, name }) {
@@ -33,7 +33,7 @@ export default function ShopTag({ control, name }) {
               : 'border border-neutral-950 text-black'
           }`}
         >
-          {tag.label}
+          {tag.value}
           <input
             onChange={(e) => handleChange(tag.value, e.target.checked)}
             type='checkbox'
