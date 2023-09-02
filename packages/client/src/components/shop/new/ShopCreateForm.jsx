@@ -29,8 +29,12 @@ export default function ShopCreateForm() {
     }
   };
 
-  const onSubmit = data => {
-    addShop(data);
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
+    addShop(formData);
   };
 
   return (
