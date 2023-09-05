@@ -29,6 +29,10 @@ const ROOT_PROJECT_DIR = path.join(__dirname, '../../..');
       inject: [ConfigService],
     }),
     ServeStaticModule.forRoot({
+      rootPath: path.join(ROOT_PROJECT_DIR, 'packages/server', 'resources'),
+      serveRoot: '/resources',
+    }),
+    ServeStaticModule.forRoot({
       rootPath: path.join(ROOT_PROJECT_DIR, 'packages/client', 'dist'),
     }),
     ShopModule,
