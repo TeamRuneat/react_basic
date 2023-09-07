@@ -21,7 +21,11 @@ export class ShopService {
     await this.shopModel.findByIdAndUpdate(id, updateShopDto);
   }
 
-  findAll() {
+  find(keyword?: string) {
+    if (keyword) {
+      const sanitizedKeyword = keyword.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&');
+      return this.shopModel.find({ title: { $regex: sanitizedKeyword } });
+    }
     return this.shopModel.find().exec();
   }
 

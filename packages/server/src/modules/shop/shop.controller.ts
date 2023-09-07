@@ -8,6 +8,7 @@ import {
   ParseFilePipe,
   Patch,
   Post,
+  Query,
   UploadedFiles,
   UseGuards,
   UseInterceptors,
@@ -46,7 +47,12 @@ export class ShopController {
 
   @Get()
   findAll() {
-    return this.shopService.findAll();
+    return this.shopService.find();
+  }
+
+  @Get('search')
+  find(@Query('keyword') keyword: string) {
+    return this.shopService.find(keyword);
   }
 
   @Get(':id')
