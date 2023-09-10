@@ -8,8 +8,8 @@ import logo from '../../../public/images/logo.png';
 
 export default function Navbar() {
   const [openModal, setOpenModal] = useState(false);
-  const { data : user } = useUser();
-
+  const { data: user } = useUser();
+  
   return (
     <header className='flex justify-between'>
       <h1 className='px-10 py-7 text-2xl inline-block'>
@@ -17,11 +17,14 @@ export default function Navbar() {
           <img src={logo} alt='logo' className='w-[80px] h-[30]' />
         </Link>
       </h1>
-      <nav className='mx-12 flex items-center font-semibold'>
+      <nav className='mx-12 flex items-center'>
         {user ? (
-          <div className='mr-3'>
+          <div className='mr-3 flex items-center'>
             <Link to='/mypage' className='flex items-center'>
               <UserProfile />
+            </Link>
+            <Link to='/new' className='ml-6 font-semibold'>
+              등록하기
             </Link>
           </div>
         ) : (

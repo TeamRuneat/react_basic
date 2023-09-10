@@ -19,8 +19,10 @@
     "dotenv-webpack": "^8.0.1",
     "postcss-loader": "^7.2.4",
     "react": "^18.2.0",
+    "react-daumpost-hook": "^1.1.8",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.10",
+    "react-hook-form": "^7.45.4",
     "react-icons": "^4.9.0",
     "react-router-dom": "^6.11.2",
     "uuid": "^9.0.0"

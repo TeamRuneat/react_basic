@@ -3,17 +3,17 @@ import runeat from '../../../public/images/run_eat01.png';
 
 const getErrorMessage = (status) => {
   switch (status) {
-  case 403:
-    return {
-      title: '데이터를 불러오는데 실패하였습니다.',
-      content: '다시 시도 해주세요.',
-    };
-  case 409:
-  case 500:
-    return {
-      title: '서비스에 접속할 수 없습니다.',
-      content: '새로고침을 하거나 잠시 후 다시 접속해 주시기 바랍니다.',
-    };
+    case 403:
+      return {
+        title: '데이터를 불러오는데 실패하였습니다.',
+        content: '다시 시도 해주세요.',
+      };
+    case 409:
+    case 500:
+      return {
+        title: '서비스에 접속할 수 없습니다.',
+        content: '새로고침을 하거나 잠시 후 다시 접속해 주시기 바랍니다.',
+      };
   }
 };
 
