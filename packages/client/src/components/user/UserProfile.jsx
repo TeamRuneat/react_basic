@@ -13,7 +13,7 @@ export default function UserProfile() {
           alt='프로필'
           className='w-full h-full rounded-full'
         />
-     </div>
+      </div>
     </>
   );
 }

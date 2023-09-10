@@ -28,4 +28,4 @@ export default function ErrorFallback({ error, resetErrorBoundary }) {
       <button onClick={() => resetErrorBoundary} className='border-gray-950 border p-3 rounded-lg font-bold'>{content}</button>
     </div>
   );
-};
+}
