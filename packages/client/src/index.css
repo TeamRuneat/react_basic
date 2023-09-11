@@ -4,12 +4,13 @@
 
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 @import url('https://webfontworld.github.io/BMJua/BMJua.css');
+@import url('https://fonts.cdnfonts.com/css/archivo');
 
 * {
   box-sizing: border-box;
   -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
   scrollbar-width: none; /* Hide scrollbar for Firefox */
-  font-family: NanumSquare;
+  font-family: 'Archivo', 'NanumSquare', sans-serif;
   font-weight: 400;
 }
 
@@ -32,7 +33,7 @@ span {
 }
 
 input {
-  @apply p-4 w-full h-12 outline-none border border-gray-300;
+  @apply w-full h-full outline-none;
 }
 
 input:read-only {
