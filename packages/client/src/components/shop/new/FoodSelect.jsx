@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FOOD_TYPE } from '../../../constants/foodType';
 
-export default function FoodSelect({ name, setValue: updateFoodType }) {
+export default function FoodSelect({ name, updateFoodType }) {
   const [selected, setSelected] = useState(FOOD_TYPE[0]);
 
   useEffect(() => {

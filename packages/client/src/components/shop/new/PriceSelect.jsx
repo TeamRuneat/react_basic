@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { PRICE_RANGE } from '../../../constants/priceRange';
 
-export default function PriceSelect({ name, setValue: updatePriceRange }) {
+export default function PriceSelect({ name, updatePriceRange }) {
   const [selected, setSelected] = useState(PRICE_RANGE[0]);
 
   useEffect(() => {
