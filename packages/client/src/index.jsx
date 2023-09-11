@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import NewShop from './pages/shop/new';
 import MyPage from './pages/mypage';
 import ProtectedRoute from './pages/ProtectedRoute';
+import SearchPage from './pages/search';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
         <ProtectedRoute>
           <NewShop />
         </ProtectedRoute>
-      )}
+      )},
+      { 
+        path: '/search',
+        element: <SearchPage />,
+      }
     ],
   },
 ]);
