@@ -1,4 +1,3 @@
-import * as path from 'path';
 import {
   Body,
   Controller,
@@ -18,9 +17,7 @@ import { CreateShopDto } from './dto/create-shop.dto';
 import { AuthGuard } from '../../auth/auth.guard';
 import { UpdateShopDto } from './dto/update-shop.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
-
-const toPosixPath = (filePath: string) =>
-  `${path.posix.sep}${filePath.split(path.sep).join(path.posix.sep)}`;
+import { RESOURCE_DOMAIN_URL } from '../../constants/urls';
 
 @Controller('shop-list')
 export class ShopController {
@@ -36,11 +33,11 @@ export class ShopController {
         validators: [new FileTypeValidator({ fileType: /image\/*/ })],
       }),
     )
-    images: Array<Express.Multer.File>,
+    images?: Array<Express.MulterS3.File>,
   ) {
     // NOTE form-data 에서 발생한 null prototype object 를 Object prototype based object 로 만들기 위함
     const createShopListDto = Object.assign({}, _createShopListDto, {
-      imageUrls: images.map(({ path: imagePath }) => toPosixPath(imagePath)),
+      imageUrls: images?.map(({ key }) => `${RESOURCE_DOMAIN_URL}${key}`) || [],
     });
     return this.shopService.create(createShopListDto);
   }
