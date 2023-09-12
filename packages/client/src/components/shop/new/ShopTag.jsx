@@ -22,10 +22,10 @@ export default function ShopTag({ control, name }) {
           key={tag}
           className={`p-3 mr-2 rounded-md min-w-[80px] text-center 
           ${
-            value.includes(tag)
-              ? 'bg-black text-white'
-              : 'border border-neutral-950 text-black'
-          }`}
+        value.includes(tag)
+          ? 'bg-black text-white'
+          : 'border border-neutral-950 text-black'
+        }`}
         >
           {tag}
           <input
