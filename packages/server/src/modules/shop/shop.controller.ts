@@ -34,13 +34,15 @@ export class ShopController {
     @UploadedFiles(
       new ParseFilePipe({
         validators: [new FileTypeValidator({ fileType: /image\/*/ })],
+        fileIsRequired: false,
       }),
     )
-    images: Array<Express.Multer.File>,
+    images?: Array<Express.Multer.File>,
   ) {
     // NOTE form-data 에서 발생한 null prototype object 를 Object prototype based object 로 만들기 위함
     const createShopListDto = Object.assign({}, _createShopListDto, {
-      imageUrls: images.map(({ path: imagePath }) => toPosixPath(imagePath)),
+      imageUrls:
+        images?.map(({ path: imagePath }) => toPosixPath(imagePath)) || [],
     });
     return this.shopService.create(createShopListDto);
   }
