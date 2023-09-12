@@ -54,14 +54,14 @@ export default function ShopCreateForm() {
         <FoodSelect
           name='type'
           label='카테고리'
-          setValue={setValue}
+          updateFoodType={setValue}
         />
       </List>
       <List title={'가격대'}>
         <PriceSelect
           name='priceRange'
           label='가격대'
-          setValue={setValue}
+          updatePriceRange={setValue}
         />
       </List>
       <List title={'태그'}>
