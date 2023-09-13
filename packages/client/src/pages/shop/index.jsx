@@ -9,7 +9,7 @@ export default function ShopList() {
   return (
     <main>
       <Searchbox />
-      <section className='mx-[295px] mt-36'>
+      <section className='mx-auto max-w-[1330px] mt-36'>
         <ul className='grid grid-cols-1 md:grid-cols-3 lg-grid-cols-3 gap-[60px]'>
           {shops?.map((item) => (
             <ShopListItem key={item.id} item={item} />
