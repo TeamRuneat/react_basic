@@ -32,7 +32,11 @@ export default function ShopCreateForm() {
   const onSubmit = async (data) => {
     const formData = new FormData();
     for (const key in data) {
-      formData.append(key, data[key]);
+      if (Array.isArray(data[key])) {
+        data[key].forEach((item) => formData.append(key, item));
+      } else {
+        formData.append(key, data[key]);
+      }
     }
     addShop(formData);
   };
@@ -72,7 +76,7 @@ export default function ShopCreateForm() {
       </List>
       <List title={'식당 사진'}>
         <ShopFileUpload 
-          name='image' 
+          name='images' 
           control={control} 
         />
       </List>
