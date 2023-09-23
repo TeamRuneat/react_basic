@@ -21,7 +21,7 @@ export class CreateShopDto {
   priceRange: keyof typeof PriceRanges;
 
   @IsString({ each: true })
-  @Transform(({ obj, key }) => obj[key].filter((val) => val))
+  @Transform(({ obj, key }) => obj[key].filter?.((val) => val) || obj[key])
   tags: string[];
 
   @IsArray()
