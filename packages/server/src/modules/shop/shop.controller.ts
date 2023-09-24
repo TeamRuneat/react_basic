@@ -31,6 +31,7 @@ export class ShopController {
     @UploadedFiles(
       new ParseFilePipe({
         validators: [new FileTypeValidator({ fileType: /image\/*/ })],
+        fileIsRequired: false,
       }),
     )
     images?: Array<Express.MulterS3.File>,
