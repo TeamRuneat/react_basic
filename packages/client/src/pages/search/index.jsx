@@ -11,7 +11,7 @@ export default function SearchPage() {
 
   return (
     <section>
-      {shops.length === 0 ? (
+      {!shops.length ? (
         <SearchNoResult />
       ) : (
         <ul>
