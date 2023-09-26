@@ -8,10 +8,11 @@ export default function Searchbox(){
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    if(!keyword) {
+    const trimmedKeyword = keyword.trim();
+    if(!trimmedKeyword) {
       alert('검색어를 입력해주세요!');
     } else {
-      navigate(`/search?keyword=${keyword}`);
+      navigate(`/search?keyword=${trimmedKeyword}`);
     }
   }
 
