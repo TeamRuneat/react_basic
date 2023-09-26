@@ -11,8 +11,8 @@ export default function ShopList() {
       <Searchbox />
       <section className='mx-auto max-w-[1330px] mt-36'>
         <ul className='grid grid-cols-1 md:grid-cols-3 lg-grid-cols-3 gap-[60px]'>
-          {shops?.map((item) => (
-            <ShopListItem key={item.id} item={item} />
+          {shops?.map((shop) => (
+            <ShopListItem key={shop.id} shop={shop} />
           ))}
         </ul>
       </section>

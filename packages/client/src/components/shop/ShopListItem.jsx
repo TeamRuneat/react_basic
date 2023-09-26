@@ -6,11 +6,11 @@ import PickIcon from '../ui/icons/PickIcon';
 import StarIcon from '../ui/icons/StarIcon';
 import ShopListImage from './ShopListImage';
 
-export default function ShopListItem({ item }) {
-  const { title, type, priceRange, tags, imageUrls } = item;
+export default function ShopListItem({ shop }) {
+  const { title, type: cuisineType, priceRange, tags, imageUrls } = shop;
   
   const foodPrice = PRICE_RANGE.find((option) => option.value === priceRange);
-  const foodType = FOOD_TYPE.find((option) => option.value === type[0]);
+  const foodType = FOOD_TYPE.find((option) => option.value === cuisineType[0]);
 
   return (
     <li>
@@ -20,7 +20,7 @@ export default function ShopListItem({ item }) {
           <button className='absolute top-4 right-4'>
             <PickIcon />
           </button>
-          <div className='py-2 px-[14px] flex items-center absolute bottom-[6px] right-0 rounded-br-lg rounded-tl-lg backdrop-blur-xl bg-white/50'>
+          <div className='py-2 px-[14px] flex items-center absolute bottom-0 right-0 rounded-br-lg rounded-tl-lg backdrop-blur-xl bg-white/50'>
             <StarIcon />
             <span className='ml-2 text-main text-22 font-medium'>3.7</span>
           </div>
