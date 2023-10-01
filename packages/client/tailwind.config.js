@@ -5,7 +5,11 @@ module.exports = {
     extend: {
       fontFamily: {
         NanumSquare: ['NanumSquare', 'sans-serif'],
+        Archivo: ['Archivo', 'sans-serif'],
         BMJua: ['BMJua', 'sans-serif'],
+      },
+      backgroundImage: {
+        banner: `url('../public/images/banner.jpg')`,
       },
       fontSize: {
         10: '0.625rem',
@@ -16,10 +20,13 @@ module.exports = {
         16: '1rem',
         18: '1.125rem',
         20: '1.25rem',
+        22: '1.375rem',
         24: '1.5rem',
       },
       colors: {
-        brand: '#009389',
+        main: '#009389',
+        sub: '#00A89C',
+        darkgray: '#777777',
         dim: '#eeeeee',
       },
       animation: {

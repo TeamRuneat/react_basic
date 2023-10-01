@@ -14,3 +14,6 @@ export function addNewShop(data) {
   }).then((response) => response.data);
 }
 
+export function searchShops(keyword) {
+  return axios.get(`/api/shop-list/search?keyword=${keyword}`).then((response) => response.data);
+}

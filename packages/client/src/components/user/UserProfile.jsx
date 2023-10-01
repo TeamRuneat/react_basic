@@ -6,7 +6,7 @@ export default function UserProfile() {
 
   return(
     <>
-      <div className='md:block mr-4 font-semibold'>{user?.properties?.nickname}</div>
+      <div className='md:block mr-4'>{user?.properties?.nickname}</div>
       <div className='w-16 h-16'>
         <img
           src={user?.properties?.thumbnail_image}
