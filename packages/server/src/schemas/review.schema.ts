@@ -20,12 +20,13 @@ export class Review extends mongoose.Document {
   @Prop({ required: false })
   content: string;
 
-  @Prop({ required: true, type: [String] })
-  tags: string;
+  @Prop({ required: false, type: [String] })
+  tags: string[];
 }
 
 export const ReviewSchema = SchemaFactory.createForClass(Review);
 
+// NOTE 리뷰는 삭제나 수정요청을 위해 아이디가 필요할 수 있다
 ReviewSchema.virtual('id')
   .set(function (v) {
     this.set({ _id: v });
