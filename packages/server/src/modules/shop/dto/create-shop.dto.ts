@@ -12,7 +12,7 @@ import { Shop } from '../../../schemas/shop.schema';
 export class CreateShopDto implements Partial<Shop> {
   @IsNotEmpty()
   title: string;
-  // location: string;
+
   @IsEnum(FoodTypes)
   @IsNotEmpty()
   type: keyof typeof FoodTypes;
