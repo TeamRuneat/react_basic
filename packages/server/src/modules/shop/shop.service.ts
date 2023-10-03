@@ -4,7 +4,7 @@ import { UpdateShopDto } from './dto/update-shop.dto';
 import { validateOrReject } from 'class-validator';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Shop } from './schemas/shop.schema';
+import { Shop } from '../../schemas/shop.schema';
 
 @Injectable()
 export class ShopService {

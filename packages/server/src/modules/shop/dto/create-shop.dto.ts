@@ -7,8 +7,9 @@ import {
   IsString,
 } from 'class-validator';
 import { Transform } from 'class-transformer';
+import { Shop } from '../../../schemas/shop.schema';
 
-export class CreateShopDto {
+export class CreateShopDto implements Partial<Shop> {
   @IsNotEmpty()
   title: string;
   // location: string;
