@@ -1,10 +1,7 @@
 import React from 'react';
+import SvgIcon from './SvgIcon';
 import social from '../../../../public/icons/social.svg';
 
 export default function SocialSVG({ id, width, height }) {
-  return(
-    <svg role='img' width={width} height={height}>
-      <use href={`${social}#${id}`} />
-    </svg>
-  );
+  return <SvgIcon id={id} type={social} width={width} height={height} />;
 }
