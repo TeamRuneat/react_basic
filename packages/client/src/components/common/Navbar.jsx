@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import LoginModal from '../login/LoginModal';
 import UserProfile from '../user/UserProfile';
 import { useUser } from '../../hooks/auth/useUser';
-import LogoSVG from '../ui/icons/LogoSVG';
+import SvgIcon from '../ui/SvgIcon';
+import logo from '../../../public/icons/logo.svg';
 
 export default function Navbar() {
   const [openModal, setOpenModal] = useState(false);
@@ -14,7 +15,7 @@ export default function Navbar() {
       <h1>
         <Link to='/' className='flex items-center text-[60px] leading-[66px] font-BMJua text-brand text-main'>
           <span className='mr-[10px]'>
-            <LogoSVG id='main-logo' width={42} height={49} />
+            <SvgIcon type={logo} id='main-logo' width={42} height={49} />
           </span>
           런잇
         </Link>

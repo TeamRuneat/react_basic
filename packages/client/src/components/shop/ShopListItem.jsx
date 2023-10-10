@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { PRICE_RANGE } from '../../constants/priceRange';
 import { FOOD_TYPE } from '../../constants/foodType';
 import ShopListImage from './ShopListImage';
-import CommonSVG from '../ui/icons/CommonSVG';
+import SvgIcon from '../ui/SvgIcon';
 import ToggleButton from '../common/ToggleButton';
+import common from '../../../public/icons/common.svg';
 
 export default function ShopListItem({ shop }) {
   const [liked, setLiked] = useState(false);
@@ -26,11 +27,11 @@ export default function ShopListItem({ shop }) {
             className='absolute top-4 right-4'
             toggled={liked}
             onToggle={handleLike}
-            onIcon={<CommonSVG id='pick-fill' width={25} height={22} />}
-            offIcon={<CommonSVG id='pick' width={25} height={22} />}
+            onIcon={<SvgIcon type={common} id='pick-fill' width={25} height={22} />}
+            offIcon={<SvgIcon type={common} id='pick' width={25} height={22} />}
           />
           <div className='py-2 px-[14px] flex items-center absolute bottom-0 right-0 rounded-br-lg rounded-tl-lg backdrop-blur-xl bg-white/50'>
-            <CommonSVG id='star' width={20} height={20} />
+            <SvgIcon type={common} id='star' width={20} height={20} />
             <span className='ml-2 text-main text-22 font-medium'>3.7</span>
           </div>
         </div>
