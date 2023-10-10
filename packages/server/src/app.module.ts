@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { HeartbeatController } from './heartbeat.controller';
 import * as path from 'path';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ReviewModule } from './modules/review/review.module';
 
 const ROOT_PROJECT_DIR = path.join(__dirname, '../../..');
 
@@ -36,6 +37,7 @@ const ROOT_PROJECT_DIR = path.join(__dirname, '../../..');
       rootPath: path.join(ROOT_PROJECT_DIR, 'packages/client', 'dist'),
     }),
     ShopModule,
+    ReviewModule,
     AuthModule,
   ],
 })
