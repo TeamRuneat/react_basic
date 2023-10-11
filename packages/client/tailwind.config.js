@@ -9,7 +9,7 @@ module.exports = {
         BMJua: ['BMJua', 'sans-serif'],
       },
       backgroundImage: {
-        banner: `url('../public/images/banner.jpg')`,
+        banner: 'url(\'../public/images/banner.jpg\')',
       },
       fontSize: {
         10: '0.625rem',
