@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SearchIcon from '../ui/icons/SearchIcon';
+import SvgIcon from '../ui/SvgIcon';
 import banner from '../../../public/images/banner.jpg';
+import common from '../../../public/icons/common.svg';
 
 export default function Searchbox(){
   const [keyword, setKeyword] = useState('');
@@ -14,9 +15,9 @@ export default function Searchbox(){
     } else {
       navigate(`/search?keyword=${trimmedKeyword}`);
     }
-  };
-
-  return(
+  }
+  
+  return (
     <section className='relative h-[340px]'>
       <div 
         className='w-full h-full bg-cover' 
@@ -35,7 +36,7 @@ export default function Searchbox(){
             className='absolute top-[18px] right-10'
             onClick={handleSearch}  
           >
-            <SearchIcon />
+            <SvgIcon type={common} id='search' width={34} height={34} />
           </button>
         </div>
       </div>
