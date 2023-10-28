@@ -13,8 +13,8 @@ export default function Navbar() {
   return (
     <header className='mt-20 mb-10 mx-[300px] flex justify-between items-center'>
       <h1>
-        <Link to='/' className='flex items-center text-[60px] leading-[66px] font-BMJua text-brand text-main'>
-          <span className='mr-[10px]'>
+        <Link to='/' className='flex text-[60px] leading-[66px] font-BMJua text-brand text-main'>
+          <span className='mr-[10px] pt-[8px]'>
             <SvgIcon type={logo} id='main-logo' width={42} height={49} />
           </span>
           런잇
