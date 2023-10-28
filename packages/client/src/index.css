@@ -33,12 +33,8 @@ span {
 }
 
 input {
-  @apply w-full h-full outline-none;
+  @apply w-full h-full outline-none border border-black bg-white rounded-[10px] min-h-[50px] text-20 indent-3;
 }
-
-input:read-only {
-  @apply bg-[#fafafb];
-}  
 
 input[type='file'] {
   @apply absolute inset-0 w-full h-full opacity-0 cursor-pointer;
