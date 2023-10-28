@@ -16,7 +16,7 @@ export default function ShopListItem({ shop }) {
 
   const handleLike = () => {
     setLiked(!liked);
-  }
+  };
 
   return (
     <li>
