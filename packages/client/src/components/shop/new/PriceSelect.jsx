@@ -1,29 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useController } from 'react-hook-form';
 import { PRICE_RANGE } from '../../../constants/priceRange';
+import FormErrorMessage from './FormErrorMessage';
 
-export default function PriceSelect({ name, updatePriceRange }) {
-  const [selected, setSelected] = useState(PRICE_RANGE[0]);
+export default function PriceSelect({ name, control, errors, validation }) {
+  const { field } = useController({ 
+    control, 
+    name,
+    rules: validation.text
+  });
+  const [value, setValue] = useState('');
 
-  useEffect(() => {
-    updatePriceRange(name, selected.value);
-  }, [selected, updatePriceRange]);
+  const handleChange = (selectedPrice, isChecked) => {
+    if (isChecked) {
+      field.onChange(selectedPrice);
+      setValue(selectedPrice);
+    }
+  };
 
   return (
-    <div className='relative inline-block w-full rounded-lg border border-neutral-300'>
-      <select
-        name={name}
-        value={selected.label}
-        onChange={(e) =>
-          setSelected(PRICE_RANGE.find((option) => option.label === e.target.value))
-        }
-        className='w-full h-10 pl-3 pr-7'
-      >
-        {PRICE_RANGE.map((option, index) => (
-          <option key={index} value={option.label}>
-            {option.label}
-          </option>
+    <>
+      <div className='flex flex-wrap -mt-[15px]'>
+        {PRICE_RANGE.map((price, index) => (
+          <label
+            key={index}
+            className={`px-6 mr-[15px] mt-[15px] rounded-[10px] text-center text-18 h-12 leading-[48px] cursor-pointer
+            ${value === price.value 
+            ? 'bg-main border border-main text-white' 
+            : 'border border-neutral-950 text-black'
+          }`}
+          >
+            {price.label}
+            <input
+              onChange={(e) => handleChange(price.value, e.target.checked)}
+              type='checkbox'
+              checked={value.includes(price.value)}
+              value={price.value}
+            />
+          </label>
         ))}
-      </select>
-    </div>
+      </div>
+      <FormErrorMessage name={'priceRange'} errors={errors} />
+    </>    
   );
 }

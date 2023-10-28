@@ -1,29 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useController } from 'react-hook-form';
 import { FOOD_TYPE } from '../../../constants/foodType';
+import FormErrorMessage from './FormErrorMessage';
 
-export default function FoodSelect({ name, updateFoodType }) {
-  const [selected, setSelected] = useState(FOOD_TYPE[0]);
+export default function FoodSelect({ name, control, errors, validation }) {
+  const { field } = useController({ 
+    control, 
+    name,
+    rules: validation.text
+  });
+  const [value, setValue] = useState('');
 
-  useEffect(() => {
-    updateFoodType(name, selected.value);
-  }, [selected, updateFoodType]);
+  const handleChange = (selectedFoodType, isChecked) => {
+    if (isChecked) {
+      field.onChange(selectedFoodType);
+      setValue(selectedFoodType);
+    }
+  };
 
   return (
-    <div className='relative inline-block w-full rounded-lg border border-neutral-300'>
-      <select
-        name={name}
-        value={selected.label}
-        onChange={(e) =>
-          setSelected(FOOD_TYPE.find((option) => option.label === e.target.value))
-        }
-        className='w-full h-10 pl-3 pr-7'
-      >
-        {FOOD_TYPE.map((option, index) => (
-          <option key={index} value={option.label}>
-            {option.label}
-          </option>
+    <>
+      <div className='flex flex-wrap'>
+        {FOOD_TYPE.map((type, index) => (
+          <label
+            key={index}
+            className={`px-6 mr-[15px] rounded-[10px] text-center text-18 h-12 leading-[48px] cursor-pointer
+            ${value === type.value
+            ? 'bg-main border border-main text-white' 
+            : 'border border-neutral-950 text-black'
+          }`}
+          >
+            {type.label}
+            <input
+              onChange={(e) => handleChange(type.value, e.target.checked)}
+              type='checkbox'
+              checked={value.includes(type.value)}
+              value={type.value}
+            />
+          </label>
         ))}
-      </select>
-    </div>
+      </div>
+      <FormErrorMessage name={'type'} errors={errors} />
+    </>   
   );
 }

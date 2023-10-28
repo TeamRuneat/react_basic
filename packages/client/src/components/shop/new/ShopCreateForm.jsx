@@ -6,6 +6,8 @@ import FoodSelect from './FoodSelect';
 import PriceSelect from './PriceSelect';
 import ShopTag from './ShopTag';
 import ShopFileUpload from './ShopFileUpload';
+import ShopLocation from './ShopLocation';
+import FormErrorMessage from './FormErrorMessage';
 
 export default function ShopCreateForm() {
   const {
@@ -19,7 +21,7 @@ export default function ShopCreateForm() {
   });
   const { mutate: addShop } = useCreateShop();
 
-  const registerCheck = {
+  const validation = {
     text: {
       required: '필수입력 정보입니다.',
       maxLength: {
@@ -42,53 +44,67 @@ export default function ShopCreateForm() {
   };
 
   return (
-    <ul className='max-w-2xl'>
+    <div>
       <List title={'식당 이름'}>
         <input
           type='text'
-          {...register('title', registerCheck.text)}
+          {...register('title', validation.text)}
+          className='h-auto'
         />
-        {errors?.title?.message && (
-          <span className='mt-2 text-[#ff4d4d]'>
-            {errors.title.message}
-          </span>
-        )}
+        <FormErrorMessage 
+          name={'title'}
+          errors={errors}
+        />
+      </List>
+      <List title={'식당 위치'}>
+        <ShopLocation
+          register={register}
+          setShopLocation={setValue}
+          errors={errors}
+          validation={validation}
+        />
       </List>
       <List title={'카테고리'}>
         <FoodSelect
           name='type'
-          label='카테고리'
-          updateFoodType={setValue}
+          control={control} 
+          errors={errors}
+          validation={validation}
         />
       </List>
       <List title={'가격대'}>
         <PriceSelect
           name='priceRange'
-          label='가격대'
-          updatePriceRange={setValue}
+          control={control} 
+          errors={errors}
+          validation={validation}
         />
       </List>
       <List title={'태그'}>
         <ShopTag 
           name='tags' 
           control={control} 
+          errors={errors}
+          validation={validation}
         />
       </List>
       <List title={'식당 사진'}>
         <ShopFileUpload 
           name='images' 
           control={control} 
+          errors={errors}
+          validation={validation}
         />
       </List>
-      <div className='text-center'>
+      <div className='flex justify-center'>
         <button
           type='button'
+          className='mt-12 mr-[30px] w-[422px] h-20 text-[26px] rounded-[10px] bg-main text-white'
           onClick={handleSubmit(onSubmit)}
-          className='mt-9 bg-black text-white w-[120px] h-12'
         >
-          등록
+          등록하기
         </button>
       </div>
-    </ul>
+    </div>
   );
 }
