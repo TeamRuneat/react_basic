@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { useController } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 import { FOOD_TYPE } from '../../../constants/foodType';
 import FormErrorMessage from './FormErrorMessage';
 
-export default function FoodSelect({ name, control, errors, validation }) {
+export default function FoodSelect() {
+  const { errors } = useFormContext();
   const { field } = useController({ 
-    control, 
-    name,
-    rules: validation.text
+    name: 'type',
+    rules: {
+      required: '필수입력 정보입니다.',
+    }
   });
   const [value, setValue] = useState('');
 

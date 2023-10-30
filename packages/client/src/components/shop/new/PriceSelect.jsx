@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { useController } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 import { PRICE_RANGE } from '../../../constants/priceRange';
 import FormErrorMessage from './FormErrorMessage';
 
-export default function PriceSelect({ name, control, errors, validation }) {
+export default function PriceSelect() {
+  const { errors } = useFormContext();
   const { field } = useController({ 
-    control, 
-    name,
-    rules: validation.text
+    name: 'priceRange',
+    rules: {
+      required: '필수입력 정보입니다.',
+    }
   });
   const [value, setValue] = useState('');
 

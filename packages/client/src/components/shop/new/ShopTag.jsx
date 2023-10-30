@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { useController } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 import FormErrorMessage from './FormErrorMessage';
 
 const tags = ['가성비', '점심회식', '저녁회식', '혼밥', '단체', '빨리나오는', '양많은', '구워주는', '룸있는'];
 
-export default function ShopTag({ control, name, errors, validation }) {
+export default function ShopTag() {
+  const { errors } = useFormContext();
   const { field } = useController({ 
-    control, 
-    name,
-    rules: validation.text
+    name: 'tags',
+    rules: {
+      required: '필수입력 정보입니다.',
+    }
   });
   const [value, setValue] = useState([]);
 

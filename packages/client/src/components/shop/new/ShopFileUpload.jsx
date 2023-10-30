@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { useController } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 import FormErrorMessage from './FormErrorMessage';
 import SvgIcon from '../../ui/SvgIcon';
 import common from '../../../../public/icons/common.svg';
 
-export default function ShopFileUpload({ control, name, errors, validation }) {
+export default function ShopFileUpload() {
+  const { errors } = useFormContext();
   const { field } = useController({ 
-    control, 
-    name, 
-    rules: validation.text
+    name: 'images',
+    rules: {
+      required: '필수입력 정보입니다.',
+    }
   });
   const [fileList, setFileList] = useState([]);
 

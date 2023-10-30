@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 import ReactDaumPost from 'react-daumpost-hook';
 import FormErrorMessage from './FormErrorMessage';
 
-export default function ShopLocation ({ register, setShopLocation, errors, validation }){
+export default function ShopLocation (){
+  const { register, setValue, errors } = useFormContext();
   const [shopAddress, setShopAddress] = useState('');
-
+  
   const postConfig = {
     onComplete: (data) => {
-      console.log(data);
+      const locationData = {
+        sido: data.sido,
+        sigungu: data.sigungu,
+        query: data.query
+      };
       setShopAddress(data.address);
+      setValue('location', locationData);
     },
   };
 
   const postCode = ReactDaumPost(postConfig);
-
-  useEffect(() => {
-    setShopLocation('location', shopAddress);
-  }, [shopAddress, setShopLocation]);
 
   return(
     <>
@@ -24,7 +27,7 @@ export default function ShopLocation ({ register, setShopLocation, errors, valid
         <input 
           readOnly 
           value={shopAddress || ''} 
-          {...register('location', validation.text)}
+          {...register('location', { required: '필수입력 정보입니다.' })}
         />
         <button 
           type='button'

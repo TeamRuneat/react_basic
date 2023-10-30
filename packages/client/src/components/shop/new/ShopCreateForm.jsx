@@ -1,7 +1,7 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import List from './List';
+import { useForm, FormProvider } from 'react-hook-form';
 import { useCreateShop } from '../../../hooks/shop/useCreateShop';
+import List from './List';
 import FoodSelect from './FoodSelect';
 import PriceSelect from './PriceSelect';
 import ShopTag from './ShopTag';
@@ -10,15 +10,13 @@ import ShopLocation from './ShopLocation';
 import FormErrorMessage from './FormErrorMessage';
 
 export default function ShopCreateForm() {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    control,
-    formState: { errors }
-  } = useForm({
+  const methods = useForm({
     mode: 'onSubmit'
   });
+  const { 
+    handleSubmit,
+    formState: { errors }
+  } = methods;
   const { mutate: addShop } = useCreateShop();
 
   const validation = {
@@ -36,6 +34,8 @@ export default function ShopCreateForm() {
     for (const key in data) {
       if (Array.isArray(data[key])) {
         data[key].forEach((item) => formData.append(key, item));
+      } else if(key === 'location') {
+        formData.append('location', JSON.stringify(data.location));
       } else {
         formData.append(key, data[key]);
       }
@@ -44,11 +44,11 @@ export default function ShopCreateForm() {
   };
 
   return (
-    <div>
+    <FormProvider {...methods}>
       <List title={'식당 이름'}>
         <input
           type='text'
-          {...register('title', validation.text)}
+          {...methods.register('title', validation.text)}
           className='h-auto'
         />
         <FormErrorMessage 
@@ -57,54 +57,27 @@ export default function ShopCreateForm() {
         />
       </List>
       <List title={'식당 위치'}>
-        <ShopLocation
-          register={register}
-          setShopLocation={setValue}
-          errors={errors}
-          validation={validation}
-        />
+        <ShopLocation />
       </List>
       <List title={'카테고리'}>
-        <FoodSelect
-          name='type'
-          control={control} 
-          errors={errors}
-          validation={validation}
-        />
+        <FoodSelect />
       </List>
       <List title={'가격대'}>
-        <PriceSelect
-          name='priceRange'
-          control={control} 
-          errors={errors}
-          validation={validation}
-        />
+        <PriceSelect />
       </List>
       <List title={'태그'}>
-        <ShopTag 
-          name='tags' 
-          control={control} 
-          errors={errors}
-          validation={validation}
-        />
+        <ShopTag />
       </List>
       <List title={'식당 사진'}>
-        <ShopFileUpload 
-          name='images' 
-          control={control} 
-          errors={errors}
-          validation={validation}
-        />
+        <ShopFileUpload />
       </List>
-      <div className='flex justify-center'>
-        <button
-          type='button'
-          className='mt-12 mr-[30px] w-[422px] h-20 text-[26px] rounded-[10px] bg-main text-white'
-          onClick={handleSubmit(onSubmit)}
-        >
-          등록하기
-        </button>
-      </div>
-    </div>
+      <button
+        type='button'
+        className='mx-auto mt-12 block w-[422px] h-20 text-[26px] rounded-[10px] bg-main text-white'
+        onClick={handleSubmit(onSubmit)}
+      >
+        등록하기
+      </button>
+    </FormProvider>
   );
 }
