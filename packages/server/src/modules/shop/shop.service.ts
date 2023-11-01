@@ -5,6 +5,7 @@ import { validateOrReject } from 'class-validator';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Shop } from '../../schemas/shop.schema';
+import { toHomeShopItemDto } from './dto/home-shop-item.dto';
 
 @Injectable()
 export class ShopService {
@@ -21,16 +22,19 @@ export class ShopService {
     await this.shopModel.findByIdAndUpdate(id, updateShopDto);
   }
 
-  find(keyword?: string) {
+  async find(keyword?: string) {
     if (keyword) {
       const sanitizedKeyword = keyword.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&');
-      return this.shopModel.find({ title: { $regex: sanitizedKeyword } });
+      const models = await this.shopModel.find({
+        title: { $regex: sanitizedKeyword },
+      });
+      return models.map(toHomeShopItemDto);
     }
-    return this.shopModel.find().exec();
+    return (await this.shopModel.find()).map(toHomeShopItemDto);
   }
 
-  findOne(id: string) {
-    return this.shopModel.findById(id);
+  async findOne(id: string) {
+    return toHomeShopItemDto(await this.shopModel.findById(id));
   }
 
   remove(id: number) {

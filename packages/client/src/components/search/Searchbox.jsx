@@ -15,7 +15,7 @@ export default function Searchbox(){
     } else {
       navigate(`/search?keyword=${trimmedKeyword}`);
     }
-  }
+  };
   
   return (
     <section className='relative h-[340px]'>
