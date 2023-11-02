@@ -9,7 +9,7 @@ import common from '../../../public/icons/common.svg';
 
 export default function ShopListItem({ shop }) {
   const [liked, setLiked] = useState(false);
-  const { title, type: cuisineType, priceRange, tags, imageUrls } = shop;
+  const { title, type: cuisineType, priceRange, tags, imageUrl } = shop;
 
   const foodPrice = PRICE_RANGE.find((option) => option.value === priceRange);
   const foodType = FOOD_TYPE.find((option) => option.value === cuisineType[0]);
@@ -22,7 +22,7 @@ export default function ShopListItem({ shop }) {
     <li>
       <Link>
         <div className='relative mb-5'>
-          <ShopListImage image={imageUrls} />
+          <ShopListImage image={imageUrl} />
           <ToggleButton
             className='absolute top-4 right-4'
             toggled={liked}
