@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { FoodTypes, PriceRanges } from '../constants/shop';
 import { Review, ReviewSchema } from './review.schema';
-import { Location, LocationSchema } from './location.schema';
+import { Location } from './location.schema';
 
 export type ShopDocument = HydratedDocument<Shop>;
 
@@ -47,7 +47,7 @@ export class Shop extends mongoose.Document {
   @Prop({ type: [ReviewSchema], default: [] })
   reviews: Review[];
 
-  @Prop({ type: LocationSchema })
+  @Prop({ type: Location })
   location: Location;
 }
 
