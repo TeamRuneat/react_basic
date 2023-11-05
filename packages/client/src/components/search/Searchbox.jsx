@@ -39,6 +39,7 @@ export default function Searchbox(){
             <SvgIcon type={common} id='search' width={34} height={34} />
           </button>
         </div>
+        <p className='mt-10 text-20 text-center text-white'>우리 회사 주변 직장인들이 인정한 ‘<span className='font-extrabold'>진짜 맛집</span>’을 찾아보세요.</p>
       </div>
     </section>
   );

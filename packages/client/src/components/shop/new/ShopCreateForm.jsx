@@ -1,25 +1,25 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import List from './List';
+import { useForm, FormProvider } from 'react-hook-form';
 import { useCreateShop } from '../../../hooks/shop/useCreateShop';
+import List from './List';
 import FoodSelect from './FoodSelect';
 import PriceSelect from './PriceSelect';
 import ShopTag from './ShopTag';
 import ShopFileUpload from './ShopFileUpload';
+import ShopLocation from './ShopLocation';
+import FormErrorMessage from './FormErrorMessage';
 
 export default function ShopCreateForm() {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    control,
-    formState: { errors }
-  } = useForm({
+  const methods = useForm({
     mode: 'onSubmit'
   });
+  const { 
+    handleSubmit,
+    formState: { errors }
+  } = methods;
   const { mutate: addShop } = useCreateShop();
 
-  const registerCheck = {
+  const validation = {
     text: {
       required: '필수입력 정보입니다.',
       maxLength: {
@@ -34,6 +34,8 @@ export default function ShopCreateForm() {
     for (const key in data) {
       if (Array.isArray(data[key])) {
         data[key].forEach((item) => formData.append(key, item));
+      } else if(key === 'location') {
+        formData.append('location', JSON.stringify(data.location));
       } else {
         formData.append(key, data[key]);
       }
@@ -42,53 +44,40 @@ export default function ShopCreateForm() {
   };
 
   return (
-    <ul className='max-w-2xl'>
+    <FormProvider {...methods}>
       <List title={'식당 이름'}>
         <input
           type='text'
-          {...register('title', registerCheck.text)}
+          {...methods.register('title', validation.text)}
+          className='h-auto'
         />
-        {errors?.title?.message && (
-          <span className='mt-2 text-[#ff4d4d]'>
-            {errors.title.message}
-          </span>
-        )}
+        <FormErrorMessage 
+          name={'title'}
+          errors={errors}
+        />
+      </List>
+      <List title={'식당 위치'}>
+        <ShopLocation />
       </List>
       <List title={'카테고리'}>
-        <FoodSelect
-          name='type'
-          label='카테고리'
-          updateFoodType={setValue}
-        />
+        <FoodSelect />
       </List>
       <List title={'가격대'}>
-        <PriceSelect
-          name='priceRange'
-          label='가격대'
-          updatePriceRange={setValue}
-        />
+        <PriceSelect />
       </List>
       <List title={'태그'}>
-        <ShopTag 
-          name='tags' 
-          control={control} 
-        />
+        <ShopTag />
       </List>
       <List title={'식당 사진'}>
-        <ShopFileUpload 
-          name='images' 
-          control={control} 
-        />
+        <ShopFileUpload />
       </List>
-      <div className='text-center'>
-        <button
-          type='button'
-          onClick={handleSubmit(onSubmit)}
-          className='mt-9 bg-black text-white w-[120px] h-12'
-        >
-          등록
-        </button>
-      </div>
-    </ul>
+      <button
+        type='button'
+        className='mx-auto mt-12 block w-[422px] h-20 text-[26px] rounded-[10px] bg-main text-white'
+        onClick={handleSubmit(onSubmit)}
+      >
+        등록하기
+      </button>
+    </FormProvider>
   );
 }
