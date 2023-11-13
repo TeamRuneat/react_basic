@@ -4,7 +4,7 @@ import ReactDaumPost from 'react-daumpost-hook';
 import FormErrorMessage from './FormErrorMessage';
 
 export default function ShopLocation (){
-  const { register, setValue, errors } = useFormContext();
+  const { register, setValue, trigger, errors } = useFormContext();
   const [shopAddress, setShopAddress] = useState('');
   
   const postConfig = {
@@ -16,6 +16,7 @@ export default function ShopLocation (){
       };
       setShopAddress(data.address);
       setValue('location', locationData);
+      trigger('location');
     },
   };
 
@@ -27,7 +28,7 @@ export default function ShopLocation (){
         <input 
           readOnly 
           value={shopAddress || ''} 
-          {...register('location', { required: '필수입력 정보입니다.' })}
+          {...register('location', { required: '*필수입력 정보입니다.' })}
         />
         <button 
           type='button'
