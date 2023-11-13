@@ -8,7 +8,7 @@ export default function PriceSelect() {
   const { field } = useController({ 
     name: 'priceRange',
     rules: {
-      required: '필수입력 정보입니다.',
+      required: '*필수입력 정보입니다.',
     }
   });
   const [value, setValue] = useState('');
