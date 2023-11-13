@@ -9,7 +9,7 @@ export default function ShopFileUpload() {
   const { field } = useController({ 
     name: 'images',
     rules: {
-      required: '필수입력 정보입니다.',
+      required: '*필수입력 정보입니다.',
     }
   });
   const [fileList, setFileList] = useState([]);

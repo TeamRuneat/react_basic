@@ -17,6 +17,12 @@ export default function Searchbox(){
     }
   };
   
+  const handleEnter = (e) => {
+    if(e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+  
   return (
     <section className='relative h-[340px]'>
       <div 
@@ -29,6 +35,7 @@ export default function Searchbox(){
             className='pl-[30px] pr-10 border-none bg-[#eeeeee] rounded-[10px] text-[#777777] text-20 leading-[70px]'
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
+            onKeyDown={handleEnter}
             type='text'
             placeholder='식당, 음식, 메뉴로 검색해보세요'
           />
