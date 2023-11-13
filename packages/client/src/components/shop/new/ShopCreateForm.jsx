@@ -21,7 +21,7 @@ export default function ShopCreateForm() {
 
   const validation = {
     text: {
-      required: '필수입력 정보입니다.',
+      required: '*필수입력 정보입니다.',
       maxLength: {
         value: 50,
         message: '50자 이내로 작성해주시길 바랍니다.'
@@ -34,8 +34,6 @@ export default function ShopCreateForm() {
     for (const key in data) {
       if (Array.isArray(data[key])) {
         data[key].forEach((item) => formData.append(key, item));
-      } else if(key === 'location') {
-        formData.append('location', JSON.stringify(data.location));
       } else {
         formData.append(key, data[key]);
       }
