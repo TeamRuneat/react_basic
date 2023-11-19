@@ -10,16 +10,13 @@ export type LocationDocument = HydratedDocument<Location>;
 @Schema({ _id: false })
 export class Location extends mongoose.Document {
   @Prop({ required: true })
-  country: string;
+  sido: string;
 
   @Prop({ required: true })
-  stateOrProvince: string;
+  sigungu: string;
 
   @Prop({ required: true })
-  city: string;
-
-  @Prop({ required: false })
-  address: string;
+  query: string;
 }
 
 export const LocationSchema = SchemaFactory.createForClass(Location);

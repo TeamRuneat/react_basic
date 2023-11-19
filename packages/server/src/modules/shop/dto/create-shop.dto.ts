@@ -8,6 +8,7 @@ import {
 } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { Shop } from '../../../schemas/shop.schema';
+import { Location } from '../../../schemas/location.schema';
 
 export class CreateShopDto implements Partial<Shop> {
   @IsNotEmpty()
@@ -28,4 +29,11 @@ export class CreateShopDto implements Partial<Shop> {
   @IsArray()
   @IsOptional()
   imageUrls?: string[];
+
+  @IsOptional()
+  @Transform(({ obj }) => {
+    if (!obj.location) return;
+    return JSON.parse(obj.location);
+  })
+  location: Location;
 }
