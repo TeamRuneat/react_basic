@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useSearchShops } from '../../hooks/shop/useSearchShops';
 import SearchNoResult from '../../components/search/SearchNoResult';
 import SearchResultShops from '../../components/search/SearchResultShops';
+import Searchbox from '../../components/search/Searchbox';
 
 export default function SearchPage() {
   const [searchParams] = useSearchParams(); 
@@ -11,6 +12,7 @@ export default function SearchPage() {
 
   return (
     <section>
+      <Searchbox />
       {!shops.length ? (
         <SearchNoResult />
       ) : (

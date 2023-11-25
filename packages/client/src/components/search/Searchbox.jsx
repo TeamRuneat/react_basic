@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import SvgIcon from '../ui/SvgIcon';
 import banner from '../../../public/images/banner.jpg';
 import common from '../../../public/icons/common.svg';
+import useKeyDown from '../../hooks/useKeyDown';
 
 export default function Searchbox(){
   const [keyword, setKeyword] = useState('');
@@ -16,6 +17,8 @@ export default function Searchbox(){
       navigate(`/search?keyword=${trimmedKeyword}`);
     }
   };
+
+  const handleKeyDown = useKeyDown(handleSearch);
   
   return (
     <section className='relative h-[340px]'>
@@ -29,6 +32,7 @@ export default function Searchbox(){
             className='pl-[30px] pr-10 border-none bg-[#eeeeee] rounded-[10px] text-[#777777] text-20 leading-[70px]'
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
+            onKeyDown={handleKeyDown}
             type='text'
             placeholder='식당, 음식, 메뉴로 검색해보세요'
           />
